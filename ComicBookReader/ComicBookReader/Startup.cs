@@ -26,7 +26,9 @@ namespace ComicBookReader
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ComicBookReaderContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<AppDBContext>(options => options
+            //.UseLazyLoadingProxies()
+            .UseSqlServer(connection));
             services.AddControllersWithViews();
         }
 

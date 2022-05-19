@@ -19,6 +19,7 @@ namespace ComicBookReader.Models
         public string ReadingStatus { get; set; }
         public string ComicBookReview { get; set; }
         public int ComicBookMark { get; set; }
+        public int LastChapter { get; set; }
         public int LastPage { get; set; }
         
     }

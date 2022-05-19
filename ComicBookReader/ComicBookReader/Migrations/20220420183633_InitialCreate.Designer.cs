@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComicBookReader.Migrations
 {
-    [DbContext(typeof(ComicBookReaderContext))]
+    [DbContext(typeof(AppDBContext))]
     [Migration("20220420183633_InitialCreate")]
     partial class InitialCreate
     {

@@ -8,7 +8,7 @@ namespace ComicBookReader.Models
 {
     // Add-Migration название_миграции
     // Update-Database
-    public class ComicBookReaderContext : DbContext
+    public class AppDBContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<ComicBook> ComicBooks { get; set; }
@@ -18,7 +18,7 @@ namespace ComicBookReader.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<ComicBook_User> ComicBook_Users { get; set; }
 
-        public ComicBookReaderContext(DbContextOptions<ComicBookReaderContext> options) : base(options)
+        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

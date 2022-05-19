@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComicBookReader.Migrations
 {
-    [DbContext(typeof(ComicBookReaderContext))]
+    [DbContext(typeof(AppDBContext))]
     partial class ComicBookReaderContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
