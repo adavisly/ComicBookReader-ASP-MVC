@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a2tKCKvlfaX6Iv06Ae9wX3RhHlPEwAZSGpPnB/Di1k2jHnOUzPQzkJghlhf7mcsmGgD/qOCfI0JNONAyPGYTSA==",
+  "dgSpecHash": "1rob4pvUfLoJOA6d6yTGaOgE94Ir7z2RMjIu0arbY7tP9DKPUWQuLiSSdTjMSCKN7Cb29012HSs/BBos2sdS+w==",
   "success": true,
-  "projectFilePath": "F:\\Unik\\4course\\diplom\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj",
+  "projectFilePath": "F:\\GitHub\\ComicBookReader-ASP-MVC\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\theam\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

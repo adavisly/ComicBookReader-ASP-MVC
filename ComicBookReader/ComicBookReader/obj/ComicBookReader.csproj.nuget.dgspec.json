@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Unik\\4course\\diplom\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj": {}
+    "F:\\GitHub\\ComicBookReader-ASP-MVC\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj": {}
   },
   "projects": {
-    "F:\\Unik\\4course\\diplom\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj": {
+    "F:\\GitHub\\ComicBookReader-ASP-MVC\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Unik\\4course\\diplom\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj",
+        "projectUniqueName": "F:\\GitHub\\ComicBookReader-ASP-MVC\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj",
         "projectName": "ComicBookReader",
-        "projectPath": "F:\\Unik\\4course\\diplom\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj",
+        "projectPath": "F:\\GitHub\\ComicBookReader-ASP-MVC\\ComicBookReader\\ComicBookReader\\ComicBookReader.csproj",
         "packagesPath": "C:\\Users\\theam\\.nuget\\packages\\",
-        "outputPath": "F:\\Unik\\4course\\diplom\\ComicBookReader\\ComicBookReader\\obj\\",
+        "outputPath": "F:\\GitHub\\ComicBookReader-ASP-MVC\\ComicBookReader\\ComicBookReader\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
