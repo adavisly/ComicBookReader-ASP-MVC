@@ -11,7 +11,7 @@ namespace ComicBookReader.Models
     {
         public int ChapterId { get; set; }
         public int ComicBookId { get; set; }
-        public ComicBook ComicBook { get; set; }
+        public virtual ComicBook ComicBook { get; set; }
         public string ChapterName { get; set; }
         public List<ComicPage> ComicPages { get; set; } = new List<ComicPage>();
     }

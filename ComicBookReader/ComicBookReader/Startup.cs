@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ComicBookReader.Data;
 
 namespace ComicBookReader
 {
@@ -58,6 +59,12 @@ namespace ComicBookReader
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                AppDBContext context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+                InitialData.Initialize(context);
+            }
         }
     }
 }

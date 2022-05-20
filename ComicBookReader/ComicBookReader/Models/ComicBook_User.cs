@@ -13,8 +13,8 @@ namespace ComicBookReader.Models
         public int ComicBookId { get; set; }
         [Key, Column(Order = 1)]
         public int UserId { get; set; }
-        public ComicBook ComicBook { get; set; }
-        public User User { get; set; }
+        public virtual ComicBook ComicBook { get; set; }
+        public virtual User User { get; set; }
         public bool IsFavourite { get; set; }
         public string ReadingStatus { get; set; }
         public string ComicBookReview { get; set; }

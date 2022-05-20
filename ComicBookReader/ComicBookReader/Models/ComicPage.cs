@@ -13,6 +13,6 @@ namespace ComicBookReader.Models
         public int ChapterId { get; set; }
         public string PageImage { get; set; }
         public string PageTranslatedImage { get; set; }
-        public Chapter Chapter { get; set; }
+        public virtual Chapter Chapter { get; set; }
     }
 }
