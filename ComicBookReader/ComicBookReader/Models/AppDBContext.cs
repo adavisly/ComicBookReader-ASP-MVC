@@ -20,6 +20,7 @@ namespace ComicBookReader.Models
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -32,6 +33,15 @@ namespace ComicBookReader.Models
                 cbu.ComicBookId,
                 cbu.UserId
             });
+        }
+
+    }
+
+    public static class EntityExt
+    {
+        public static void Clear<T>(this DbSet<T> dbSet) where T : class
+        {
+            dbSet.RemoveRange(dbSet);
         }
 
     }

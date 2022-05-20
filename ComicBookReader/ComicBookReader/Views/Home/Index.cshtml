@@ -1,8 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<ComicBookReader.Models.ComicBook>
+@{
+    ViewData["Title"] = "Список комиксов";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>ComicBookReader</title>
+    </head>
+    <body>
+
+        @foreach (var cb in Model)
+        {
+            <p>@cb.ComicBookTitle</p>
+            <p>@cb.ComicBookLanguage</p>
+            <img src = @cb.ComicBookCover />
+            <p>@cb.ComicBookDescription</p>
+            <p>@cb.ComicBookYear</p>
+            <p>@cb.Authors</p>
+            <p>@cb.Genres</p>
+            <p>@cb.Chapters.Count</p>
+        }
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        </div>
+    </body>
+</html>

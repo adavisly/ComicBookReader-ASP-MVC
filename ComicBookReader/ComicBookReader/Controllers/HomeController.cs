@@ -11,16 +11,16 @@ namespace ComicBookReader.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        AppDBContext db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AppDBContext context)
         {
-            _logger = logger;
+            db = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(db.ComicBooks.ToList());
         }
 
         public IActionResult Privacy()
