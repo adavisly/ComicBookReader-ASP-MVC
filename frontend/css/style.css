@@ -1,0 +1,60 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #efefef;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.logo {
+    font-size: 25px;
+    letter-spacing: 5px;
+}
+
+.item-nav {
+    font-size: 17px;
+    letter-spacing: 5px;
+}
+
+  .topnav {
+    overflow: hidden;
+    background-color: #e8e2a2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+
+  
+  .topnav input[type=text] {
+    padding: 6px;
+    padding-left: 15px;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    width: 500px;
+    height: 30px;
+    letter-spacing: 3px;
+  }
+  
+  .topnav .search-container button {
+    padding: 6px 10px;
+    padding-top: 0;
+    margin-right: 16px;
+    background: #e8e2a2;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  
