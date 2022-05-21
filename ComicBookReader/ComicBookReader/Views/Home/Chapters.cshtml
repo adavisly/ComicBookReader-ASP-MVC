@@ -1,6 +1,6 @@
-﻿@model IEnumerable<ComicBookReader.Models.ComicBook>
+﻿@model IEnumerable<ComicBookReader.Models.Chapter>
 @{
-    ViewData["Title"] = "Список комиксов";
+    ViewData["Title"] = "Список глав";
 }
 
 <!DOCTYPE html>
@@ -11,13 +11,9 @@
     </head>
     <body>
 
-        @foreach (var cb in Model)
+        @foreach (var chapter in Model)
         {
-            <p>@cb.ComicBookTitle</p>
-            <p>@cb.ComicBookLanguage</p>
-            <img src = @cb.ComicBookCover />
-            <p>@cb.ComicBookDescription</p>
-            <p>@cb.ComicBookYear</p>
+            <p>@chapter.ChapterName</p>
         }
         <div class="text-center">
             <h1 class="display-4">Welcome</h1>

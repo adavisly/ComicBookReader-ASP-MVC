@@ -1,6 +1,6 @@
-﻿@model IEnumerable<ComicBookReader.Models.ComicBook>
+﻿@model IEnumerable<ComicBookReader.Models.Genre>
 @{
-    ViewData["Title"] = "Список комиксов";
+    ViewData["Title"] = "Список жанров";
 }
 
 <!DOCTYPE html>
@@ -11,13 +11,10 @@
     </head>
     <body>
 
-        @foreach (var cb in Model)
+        @foreach (var genre in Model)
         {
-            <p>@cb.ComicBookTitle</p>
-            <p>@cb.ComicBookLanguage</p>
-            <img src = @cb.ComicBookCover />
-            <p>@cb.ComicBookDescription</p>
-            <p>@cb.ComicBookYear</p>
+            <p>@genre.GenreId</p>
+            <p>@genre.GenreName</p>
         }
         <div class="text-center">
             <h1 class="display-4">Welcome</h1>

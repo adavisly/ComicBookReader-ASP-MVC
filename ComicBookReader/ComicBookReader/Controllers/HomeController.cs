@@ -23,6 +23,26 @@ namespace ComicBookReader.Controllers
             return View(db.ComicBooks.ToList());
         }
 
+        public IActionResult Authors()
+        {
+            return View(db.Authors.ToList());
+        }
+
+        public IActionResult Chapters()
+        {
+            return View(db.Chapters.ToList());
+        }
+
+        public IActionResult Genres()
+        {
+            return View(db.Genres.ToList());
+        }
+
+        public IActionResult ComicPages()
+        {
+            return View(db.ComicPages.ToList());
+        }
+
         public IActionResult Privacy()
         {
             return View();

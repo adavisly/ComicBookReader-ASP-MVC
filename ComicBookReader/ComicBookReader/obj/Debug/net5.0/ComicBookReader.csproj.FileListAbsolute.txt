@@ -290,3 +290,7 @@ F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5
 F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\ComicBookReader.pdb
 F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\ComicBookReader.genruntimeconfig.cache
 F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\ref\ComicBookReader.dll
+F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Home\Authors.cshtml.g.cs
+F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Home\Chapters.cshtml.g.cs
+F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Home\Genres.cshtml.g.cs
+F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Home\ComicPages.cshtml.g.cs
