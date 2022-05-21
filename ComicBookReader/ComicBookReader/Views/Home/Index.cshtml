@@ -10,7 +10,8 @@
         <title>ComicBookReader</title>
     </head>
     <body>
-
+        <a asp-action="Login" asp-controller="Account">Войти в аккаунт</a>
+        <a asp-action="Logout" asp-controller="Account">Выйти</a>
         @foreach (var cb in Model)
         {
             <p>@cb.ComicBookTitle</p>

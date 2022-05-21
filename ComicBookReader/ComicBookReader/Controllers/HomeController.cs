@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComicBookReader.Controllers
 {
@@ -23,6 +24,7 @@ namespace ComicBookReader.Controllers
             return View(db.ComicBooks.ToList());
         }
 
+        [Authorize]
         public IActionResult Authors()
         {
             return View(db.Authors.ToList());
