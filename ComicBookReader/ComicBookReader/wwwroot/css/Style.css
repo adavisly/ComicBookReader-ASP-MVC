@@ -1,3 +1,156 @@
 ﻿body {
-    background-color: #efefef;
+    font-family: 'Montserrat', sans-serif;
+    background-color: red;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-cb {
+    margin-left: 25px;
+    padding-right: 13px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.logo-comicbook {
+    font-size: 25px;
+    letter-spacing: 5px;
+}
+
+.logo-img {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.item-nav {
+    font-size: 17px;
+    letter-spacing: 5px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #e8e2a2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+.username {
+    margin-top: 13px;
+}
+
+.topnav input[type=text] {
+    padding: 6px;
+    padding-left: 15px;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    width: 500px;
+    height: 30px;
+    letter-spacing: 3px;
+}
+
+.topnav .search-container button {
+    padding: 6px 10px;
+    padding-top: 0;
+    margin-right: 16px;
+    background: #e8e2a2;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.content {
+    background-color: white;
+    margin-top: 25px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 20px;
+    text-align: center;
+    height: 570px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+.input-item {
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #d3d3d3;
+}
+
+.form-group label {
+    padding: 5px;
+}
+
+.sign-in {
+    border: 0px;
+    border-radius: 20px;
+    background-color: #e8e2a2;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+    .sign-in:hover {
+        background-color: rgb(218, 210, 140);
+    }
+
+.register-question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.register {
+    margin-left: 10px;
+    text-decoration: none;
+    border: 0px;
+    border-radius: 20px;
+    background-color: #d4d4d4;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+    .register:hover {
+        color: black;
+        background-color: #ababab;
+    }
+
+footer {
+    text-align: center;
+    color: #868686;
 }
