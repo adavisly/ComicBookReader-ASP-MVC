@@ -93,8 +93,15 @@ a {
     padding-top: 25px;
     padding-bottom: 25px;
     border-radius: 20px;
-    text-align: center;
+}
+
+.sign-in-page {
     height: 570px;
+    text-align: center;
+}
+
+.register-page {
+    text-align: center;
 }
 
 .form-group {

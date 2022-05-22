@@ -33,8 +33,8 @@ namespace ComicBookReader.Models
                 cbu.ComicBookId,
                 cbu.UserId
             });
+            modelBuilder.Entity<User>().Property(u => u.UserImage).HasDefaultValue("/img/user_logo.png");
         }
-
     }
 
     public static class EntityExt

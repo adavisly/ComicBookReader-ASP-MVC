@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComicBookReader.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20220420183633_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220522130522_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,6 +136,9 @@ namespace ComicBookReader.Migrations
                     b.Property<bool>("IsFavourite")
                         .HasColumnType("bit");
 
+                    b.Property<int>("LastChapter")
+                        .HasColumnType("int");
+
                     b.Property<int>("LastPage")
                         .HasColumnType("int");
 
@@ -208,7 +211,9 @@ namespace ComicBookReader.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserImage")
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("/img/user_logo.png");
 
                     b.Property<string>("UserLastName")
                         .HasColumnType("nvarchar(max)");

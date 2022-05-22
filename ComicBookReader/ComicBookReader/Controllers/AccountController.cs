@@ -46,7 +46,7 @@ namespace ComicBookReader.Controllers
         {
             return View();
         }
-
+        //== null ? "" : model.UserLastName
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)

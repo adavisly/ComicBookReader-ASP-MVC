@@ -5,8 +5,6 @@ namespace ComicBookReader.Data.ViewModels
     {
         [Required(ErrorMessage = "Не указано имя")]
         public string UserFirstName { get; set; }
-
-        [Required(ErrorMessage = "Не указана Фамилия")]
         public string UserLastName { get; set; }
 
         [Required(ErrorMessage = "Не указан Email")]

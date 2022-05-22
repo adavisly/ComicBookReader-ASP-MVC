@@ -2,10 +2,11 @@
 
 namespace ComicBookReader.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            /*
             migrationBuilder.CreateTable(
                 name: "Authors",
                 columns: table => new
@@ -61,7 +62,7 @@ namespace ComicBookReader.Migrations
                     UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserImage = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "/img/user_logo.png")
                 },
                 constraints: table =>
                 {
@@ -146,6 +147,7 @@ namespace ComicBookReader.Migrations
                     ReadingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ComicBookReview = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ComicBookMark = table.Column<int>(type: "int", nullable: false),
+                    LastChapter = table.Column<int>(type: "int", nullable: false),
                     LastPage = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -210,6 +212,7 @@ namespace ComicBookReader.Migrations
                 name: "IX_ComicPages_ChapterId",
                 table: "ComicPages",
                 column: "ChapterId");
+        */
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
