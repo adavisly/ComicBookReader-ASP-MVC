@@ -1,6 +1,6 @@
 ﻿body {
     font-family: 'Montserrat', sans-serif;
-    background-color: red;
+    background-color: #efefef;
 }
 
 a {
@@ -105,6 +105,9 @@ a {
     border: 2px solid;
     border-radius: 10px;
     border-color: #d3d3d3;
+    font-size: 12pt;
+    width: 250px;
+    height: 30px;
 }
 
 .form-group label {
