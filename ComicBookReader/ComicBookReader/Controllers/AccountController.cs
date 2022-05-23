@@ -7,6 +7,7 @@ using ComicBookReader.Data.ViewModels; // пространство имен мо
 using ComicBookReader.Models; // пространство имен UserContext и класса User
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComicBookReader.Controllers
 {
@@ -17,9 +18,20 @@ namespace ComicBookReader.Controllers
         {
             db = context;
         }
+
+        [Authorize]
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("UserProfile", "Account");
+            }
             return View();
         }
 
@@ -34,7 +46,7 @@ namespace ComicBookReader.Controllers
                 {
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserProfile", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
