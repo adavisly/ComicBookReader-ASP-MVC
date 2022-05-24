@@ -8,11 +8,10 @@
     
 </head>
 <body>
-<p>@User.Identity.Name</p>
     <section class="content">
         <a class="logout-btn" asp-action="Logout" asp-controller="Account">Выйти</a>
         <div class="user-info">
-            <img class="user-logo" src="/img/user_logo.png" />
+            <img class="user-logo" src="@Model.UserImage" />
             <div>
                 <h5 class="user-name">@Model.UserFirstName @Model.UserLastName</h5>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="change-info-btn btn btn-primary">Изменить информацию</button>
@@ -32,7 +31,7 @@
             <input type="file" id="formControlFile">
             <div class="info-change">
                 <div>
-                    <img class="user-logo place" src="/img/user_logo.png" />
+                    <img class="user-logo place" src="@Model.UserImage" />
                 </div>
                 <div class="info-change">
                     <form>

@@ -23,6 +23,8 @@
 .user-logo {
     height: 80px;
     width: 80px;
+    border-radius: 10px;
+    margin-right: 10px;
 }
 
 .place {

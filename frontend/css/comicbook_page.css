@@ -1,0 +1,73 @@
+.comicbook-page {
+
+}
+
+.cb-info-text {
+}
+
+.cb-info {
+    display: flex;
+}
+
+.cover-img {
+    margin-left: 30px;
+    height: 336px;
+    width: 240px;
+    border-radius: 20px;
+}
+
+.cb-info-text {
+    margin-left: 30px;
+}
+
+.cb-info-item {
+    margin-bottom: 5px;
+}
+
+.cb-info-user {
+    float: right;
+}
+
+.review-btn {
+    float: right;
+    border: 0px;
+    border-radius: 20px;
+    background-color: #e8e2a2;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.col {
+    background-color: #d4d4d4;
+}
+
+.star-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.cbuser-info {
+    margin-left: 100px;
+}
+
+.rev-star {
+    margin-right: 5px;
+}
+
+.rev-count {
+    margin-top: 1px;
+    color: rgb(141, 141, 141);
+}
+
+.cb-status {
+    margin-left: 50px;
+}
+
+.cb-status select {
+    border-radius: 20px;
+    padding: 5px;
+}

@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Список комиксов";
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -11,7 +10,6 @@
     </head>
     <body>
         <section class="content home-page">
-        <a asp-action="Logout" asp-controller="Account">Выйти</a>
         <h3>Все комиксы</h3>
         <div class="search-container-content">
             <form action="/">
@@ -30,16 +28,24 @@
                     <label><input type="checkbox" name="brands[]" value="4"> Экшн</label>
                     <label><input type="checkbox" name="brands[]" value="5"> Детектив</label>
                     <label><input type="checkbox" name="brands[]" value="6"> Ужасы</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Триллер</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Трагедия</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Романтика</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Спорт</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Психология</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Повседневность</label>
-                    <label><input type="checkbox" name="brands[]" value="6"> Научная фантастика</label>
+                    <label><input type="checkbox" name="brands[]" value="7"> Триллер</label>
+                    <label><input type="checkbox" name="brands[]" value="8"> Трагедия</label>
+                    <label><input type="checkbox" name="brands[]" value="9"> Романтика</label>
+                    <label><input type="checkbox" name="brands[]" value="10"> Спорт</label>
+                    <label><input type="checkbox" name="brands[]" value="11"> Психология</label>
+                    <label><input type="checkbox" name="brands[]" value="12"> Повседневность</label>
+                    <label><input type="checkbox" name="brands[]" value="13"> Научная фантастика</label>
+                </div></div>
+
+            <div class = "filter-item">
+                <p>Язык:</p>
+                <div class="checkselect">
+                    <label><input type="checkbox" name="brands[]" value="1"> Русский</label>
+                    <label><input type="checkbox" name="brands[]" value="2"> Английский</label>
+                    <label><input type="checkbox" name="brands[]" value="3"> Японский</label>
                 </div>
         </div>
-            
+
             <div class = "filter-item">
                 <p>Сортировка по:</p>
                 <select>
@@ -50,14 +56,7 @@
                 </select>
             </div>
 
-            <div class = "filter-item">
-                <p>Язык:</p>
-                <select>
-                    <option>Русский</option>
-                    <option>Английский</option>
-                    <option>Японский</option>
-                </select>
-            </div>
+            
         </div>
         @foreach (var cb in Model)
         {
