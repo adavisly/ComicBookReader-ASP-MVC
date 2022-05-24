@@ -18,7 +18,6 @@
             </form>
         </div>
         <div class="filters">
-
             <div class = "filter-item">
                 <p>Жанры:</p>
                 <div class="checkselect">
@@ -45,7 +44,6 @@
                     <label><input type="checkbox" name="brands[]" value="3"> Японский</label>
                 </div>
         </div>
-
             <div class = "filter-item">
                 <p>Сортировка по:</p>
                 <select>
@@ -55,18 +53,17 @@
                     <option>Рейтингу</option>
                 </select>
             </div>
-
-            
         </div>
+
+        <div class="comicbook-previews">
         @foreach (var cb in Model)
         {
-            <div class="comicbook-previews">
-                <a asp-action="ComicPages" asp-controller="home" class="comicbook-preview">
+                <a asp-action="ComicBook" asp-controller="Home" class="comicbook-preview">
                     <img class="img-comicbook" src="@cb.ComicBookCover" />
                     <p>@cb.ComicBookTitle</p>
                 </a>
-            </div>
         }
+        </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="/js/home.js"></script>

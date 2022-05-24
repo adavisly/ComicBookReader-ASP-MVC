@@ -24,6 +24,12 @@ namespace ComicBookReader.Controllers
             return View(db.ComicBooks.ToList());
         }
 
+        public IActionResult ComicBook(int id = 1)
+        {
+            ComicBook comicBook = db.ComicBooks.Find(id);
+            return View(comicBook);
+        }
+
         [Authorize]
         public IActionResult Authors()
         {
