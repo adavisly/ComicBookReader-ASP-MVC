@@ -1,0 +1,30 @@
+﻿@model ComicBookReader.Models.Chapter
+@{
+    ViewData["Title"] = "Список страниц";
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>ComicBookReader</title>
+        <style>
+            .img-page {
+                height: 420px;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+
+        @foreach (var cp in Model.ComicPages)
+        {
+            <p>aaa @cp.ChapterId</p>
+            <img class="img-page" src = "@cp.PageImage" />
+        }
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        </div>
+    </body>
+</html>

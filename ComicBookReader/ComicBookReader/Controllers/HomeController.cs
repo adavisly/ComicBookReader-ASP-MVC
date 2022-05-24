@@ -24,10 +24,18 @@ namespace ComicBookReader.Controllers
             return View(db.ComicBooks.ToList());
         }
 
-        public IActionResult ComicBook(int id = 1)
+        public IActionResult ComicBook(int id)
         {
             ComicBook comicBook = db.ComicBooks.Find(id);
+            comicBook.Chapters = db.Chapters.Where(ch => ch.ComicBookId == id).ToList();
             return View(comicBook);
+        }
+
+        public IActionResult ComicChapter(int id)
+        {
+            Chapter chapter = db.Chapters.Find(id);
+            chapter.ComicPages = db.ComicPages.Where(cp => cp.ChapterId == id).OrderBy(cp => cp.PageImage).ToList();
+            return View(chapter);
         }
 
         [Authorize]

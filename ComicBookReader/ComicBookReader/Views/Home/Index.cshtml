@@ -58,7 +58,7 @@
         <div class="comicbook-previews">
         @foreach (var cb in Model)
         {
-                <a asp-action="ComicBook" asp-controller="Home" class="comicbook-preview">
+                <a href="~/Home/ComicBook/@cb.ComicBookId" class="comicbook-preview">
                     <img class="img-comicbook" src="@cb.ComicBookCover" />
                     <p>@cb.ComicBookTitle</p>
                 </a>

@@ -298,3 +298,4 @@ F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5
 F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Account\UserProfile.cshtml.g.cs
 F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Home\ComicBook.cshtml.g.cs
+F:\GitHub\ComicBookReader-ASP-MVC\ComicBookReader\ComicBookReader\obj\Debug\net5.0\Razor\Views\Home\ComicChapter.cshtml.g.cs

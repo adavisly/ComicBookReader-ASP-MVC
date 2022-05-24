@@ -1,5 +1,4 @@
-﻿@page
-@model ComicBookReader.Models.ComicBook
+﻿@model ComicBookReader.Models.ComicBook
 @{
 }
 
@@ -23,14 +22,14 @@
             </div>
         </div>
         <div class="cb-info">
-            <img class="cover-img" src="/img/ComicBooks/Avatar_The_Promise/cover.jpg" />
+            <img class="cover-img" src="@Model.ComicBookCover" />
             <div class="cb-info-text">
-                <h5>@Html.DisplayFor(m => m.ComicBookTitle)</h5>
-                <p class="cb-info-item">Год выхода:@Html.DisplayFor(m => m.ComicBookYear) </p>
-                <p class="cb-info-item">Язык: @Html.DisplayFor(m => m.ComicBookLanguage)</p>
+                <h5>@Model.ComicBookTitle</h5>
+                <p class="cb-info-item">Год выхода: @Model.ComicBookYear </p>
+                <p class="cb-info-item">Язык: @Model.ComicBookLanguage</p>
                 <p class="cb-info-item">Автор: </p>
                 <p class="cb-info-item">Жанры: </p>
-                <p class="cb-info-item">Описание: @Html.DisplayFor(m => m.ComicBookDescription)</p>
+                <p class="cb-info-item">Описание: @Model.ComicBookDescription</p>
             </div>
         </div>
 
@@ -71,11 +70,11 @@
         </div>
         <hr />
             <div class="chapters">
-                <a class="chapter"><h5>Глава 3</h5></a>
+                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(2).ChapterId" class="chapter"><h5>Глава 3</h5></a>
                 <hr />
-                <a class="chapter"><h5>Глава 2</h5></a>
+                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(1).ChapterId" class="chapter"><h5>Глава 2</h5></a>
                 <hr />
-                <a class="chapter"><h5>Глава 1</h5></a>
+                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(0).ChapterId" class="chapter"><h5>Глава 1</h5></a>
                 <hr />
             </div>
             <div class="reviews">
