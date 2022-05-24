@@ -20,9 +20,11 @@ namespace ComicBookReader.Controllers
         }
 
         [Authorize]
-        public IActionResult UserProfile()
+        public async Task<IActionResult> UserProfile()
         {
-            return View();
+            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+
+            return View(user);
         }
 
         [HttpGet]
