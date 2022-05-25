@@ -70,12 +70,12 @@
         </div>
         <hr />
             <div class="chapters">
-                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(2).ChapterId" class="chapter"><h5>Глава 3</h5></a>
+            @for (int i = 0; i < @Model.Chapters.Count; i++)
+            {
+                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(i).ChapterId" class="chapter"><h5>@Model.Chapters.ElementAt(i).ChapterName</h5></a>
                 <hr />
-                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(1).ChapterId" class="chapter"><h5>Глава 2</h5></a>
-                <hr />
-                <a href="~/Home/ComicChapter/@Model.Chapters.ElementAt(0).ChapterId" class="chapter"><h5>Глава 1</h5></a>
-                <hr />
+            }
+                
             </div>
             <div class="reviews">
                 <div class="review">

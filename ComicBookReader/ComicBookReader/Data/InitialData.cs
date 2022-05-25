@@ -143,7 +143,8 @@ namespace ComicBookReader.Data
                     new ComicPage
                     {
                         Chapter = ChapterAvatarTheSearch1,
-                        PageImage = $"/img/ComicBooks/Avatar_The_Promise/Part1/the promise 1 ({i + 1}).jpg"
+                        PageImage = $"/img/ComicBooks/Avatar_The_Promise/Part1/the promise 1 ({i + 1}).jpg",
+                        PageNumber = i + 1
                     });
                 }
 
@@ -154,7 +155,8 @@ namespace ComicBookReader.Data
                     new ComicPage
                     {
                         Chapter = ChapterAvatarTheSearch2,
-                        PageImage = $"/img/ComicBooks/Avatar_The_Promise/Part2/the promise 2 ({i + 1}).jpg"
+                        PageImage = $"/img/ComicBooks/Avatar_The_Promise/Part2/the promise 2 ({i + 1}).jpg",
+                        PageNumber = i + 1
                     });
                 }
 
@@ -165,7 +167,8 @@ namespace ComicBookReader.Data
                     new ComicPage
                     {
                         Chapter = ChapterAvatarTheSearch3,
-                        PageImage = $"/img/ComicBooks/Avatar_The_Promise/Part3/the promise 3 ({i + 1}).jpg"
+                        PageImage = $"/img/ComicBooks/Avatar_The_Promise/Part3/the promise 3 ({i + 1}).jpg",
+                        PageNumber = i + 1
                     });
                 }
                 context.SaveChanges();
