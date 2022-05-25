@@ -81,12 +81,14 @@
 }
 
 .ch {
+    cursor: pointer;
     margin-right: 100px;
     padding-right: 100px;
     padding-left: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;
+    background-color: #e8e2a2;
 }
 
 .ch:hover {
@@ -95,6 +97,7 @@
 }
 
 .rev {
+    cursor: pointer;
     margin-left: 100px;
     padding-right: 100px;
     padding-left: 100px;
@@ -139,9 +142,9 @@
 }
 
 .reviews {
+    display: none;
     margin-left: 150px;
     margin-right: 150px;
-
 }
 
 .img-username {
@@ -168,3 +171,4 @@
 .img-username p {
     margin-right: 10px;
 }
+

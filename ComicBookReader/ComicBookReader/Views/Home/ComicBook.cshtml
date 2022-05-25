@@ -65,8 +65,8 @@
     </section>
     <section class="content">
         <div class="chapters-reviews">
-            <a class="ch"><h5>Главы</h5></a>
-            <a class="rev"><h5>Отзывы</h5></a>
+            <a class="ch" onclick="showChapters()"><h5>Главы</h5></a>
+            <a class="rev" onclick="showReviews()"><h5>Отзывы</h5></a>
         </div>
         <hr />
             <div class="chapters">
@@ -90,12 +90,44 @@
                     <p class="review-value">Отзыв</p>
                 </div>
             </div>
-        
     </section>
-    <footer>
-        <p>ComicBookReader 2022</p>
-    </footer>
+
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="js/home.js"></script>
+    <script>
+
+        var reviews = document.getElementsByClassName("reviews");
+        var chapters = document.getElementsByClassName("chapters");
+
+        var rev = document.getElementsByClassName("rev");
+        var ch = document.getElementsByClassName("ch");
+        
+
+        function showReviews() {
+
+            chapters[0].style.display = "none";
+            ch[0].style.backgroundColor = "#fff";
+
+            ch[0].addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            reviews[0].style.display = "block";
+            rev[0].style.backgroundColor = "#e8e2a2";
+        }
+
+        function showChapters() {
+          
+            chapters[0].style.display = "block";
+            ch[0].style.backgroundColor = "#e8e2a2";
+
+            reviews[0].style.display = "none";
+            rev[0].style.backgroundColor = "#fff";
+
+            rev[0].addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+        } 
+    </script>
 </body>
