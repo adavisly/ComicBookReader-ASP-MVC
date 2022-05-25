@@ -20,12 +20,18 @@
               box-sizing: border-box;
             }
 
+            .slide-img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
             /* Расположите контейнер изображения (необходимо расположить стрелки влево и вправо) */
             .containerr {
               position: relative;
               display: block;
-              margin-left: 150px;
-              margin-right: 150px;
+              margin-left: 0px;
+              margin-right: 0px;
             }
 
             /* Скрыть изображения по умолчанию */
@@ -42,12 +48,12 @@
             .prev,
             .next {
               cursor: pointer;
-              position: absolute;
-              top: 40%;
               width: auto;
-              padding: 16px;
-              margin-top: -50px;
-              color: #000;
+              padding-top: 100px;
+              padding-bottom: 100px;
+              padding-left: 40px;
+              padding-right: 40px;
+              color: #555;
               font-weight: bold;
               font-size: 20px;
               border-radius: 0 3px 3px 0;
@@ -64,7 +70,8 @@
             /* При наведении курсора добавьте черный цвет фона с небольшим количеством прозрачного */
             .prev:hover,
             .next:hover {
-              background-color: rgba(0, 0, 0, 0.8);
+              background-color: #ccc;
+              color: #fff;
             }
 
             /* Номера текст (1/3 и т.д.) */
@@ -78,8 +85,9 @@
             .slider {
               margin-top: 20px;
               -webkit-appearance: none;
-              width: 100%;
-              height: 15px;
+              width: 250px;
+              height: 3px;
+              margin-left: 25px;
               border-radius: 5px;  
               background: #fff;
               outline: none;
@@ -94,41 +102,119 @@
               width: 25px;
               height: 25px;
               border-radius: 50%; 
-              background: #e8e2a2;
+              background: #fff;
               cursor: pointer;
             }
 
-            .slider::-moz-range-thumb {
+            .slider-page {
+              margin-top: 20px;
+              -webkit-appearance: none;
+              width: 500px;
+              height: 5px;
+              border-radius: 5px;  
+              background: #555;
+              outline: none;
+              opacity: 0.7;
+              -webkit-transition: .2s;
+              transition: opacity .2s;
+            }
+
+            .slider-page::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
               width: 25px;
               height: 25px;
-              border-radius: 50%;
-              background: #e8e2a2;
+              border-radius: 50%; 
+              background: #555;
               cursor: pointer;
+            }
+
+            .page-content {
+                position: relative;
+            }
+
+             .settings {
+                display: none;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                float: right;
+                height: 400px;
+                width: 300px;
+                background-color: #aaa;
+                border-radius: 20px;
+            }
+
+            .settings h5 {
+                color: #fff;
+                text-align: center;
+            }
+
+            .slidecontainer {
+                margin-top: 20px;
+            }
+
+            .settings-icon {
+                cursor: pointer;
+                margin-top: 20px;
+                margin-left: 20px;
+            }
+
+            .settings-icon img {
+                width: 50px;
+                margin-top: 5px;
+            }
+
+            .nav-reader {
+                height: 60px;
+                width: 100%;
+                background-color: #aaa;
             }
         </style>
     </head>
     <body>
+        <div class="nav-reader">
+            <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
+        </div>
         
-        <!-- Контейнер для галереи изображений -->
+        <section class="page-content">
+            <div class="slide-img">
+            <!-- Вперед и назад кнопки -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <!-- Контейнер для галереи изображений -->
         <div class="containerr">
-            <div class="slidecontainer">
-              <input type="range" min="400" max="1200" value="500" class="slider" id="myRange">
-            </div>
+            
           <!-- Полноразмерные изображения с числовым текстом -->
-          @for (int i = 0; i < @Model.ComicPages.Count; i++)
+          @{int i;}
+          @for (i = 0; i < @Model.ComicPages.Count; i++)
             {
-              
               <div class="mySlides">
-                  <div class="numbertext"><p>@Model.ComicPages.ElementAt(i).PageNumber / @Model.ComicPages.Count</p></div>
                   <img class="img-page" src="@Model.ComicPages.ElementAt(i).PageImage">
+                  <div class="numbertext"><p>@Model.ComicPages.ElementAt(i).PageNumber / @Model.ComicPages.Count</p></div>
               </div>
+              
             }
+            <form name="pageForm">
+                <input name="enter" class="enter-page" type="text" />
+                <input name="submit" onclick="Complete();" class="submit-page" type="button" value="ok"/>
+            </form>
+            
+            <div class="slidecontainer">
+              <input  type="range" min="1" max="@Model.ComicPages.Count" value="1" class="slider-page" id="myRangePage">
+            </div>
           </div>
 
-          <!-- Вперед и назад кнопки -->
-          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
           <a class="next" onclick="plusSlides(1)">&#10095;</a>
-          
+        </div>
+        
+        <div class="settings">
+            <div class="slidecontainer">
+                <h5>Размер изображения</h5>
+              <input type="range" min="400" max="1200" value="500" class="slider" id="myRange">
+            </div>
+        </div>
+        </section>
+        
     </body>
 </html>
 <script>
@@ -147,7 +233,6 @@
         }
     });
     
-
     // Вперед/назад элементы управления
     function plusSlides(n) {
       showSlides(slideIndex += n);
@@ -168,6 +253,24 @@
       }
       slides[slideIndex-1].style.display = "block";
     }
+
+    function Complete() {
+        var pageNum = document.getElementsByClassName("enter-page")[0].value;
+        currentSlide(pageNum);
+        //alert(pageNum);
+    }
+    
+    function changePage() {
+    
+    }
+
+    var sliderPage = document.getElementById("myRangePage");
+    
+    sliderPage.addEventListener("mouseup", function() {
+        currentSlide(this.value);
+    });
+    
+    
 </script>
 
 <script>
@@ -179,4 +282,19 @@
         for (i = 0; i < pages.length; i++) {
             pages[i].style.width = this.value + "px";
     }});
+</script>
+
+<script>
+    var settingsIcon = document.getElementsByClassName("settings-icon")[0];
+    var settings = document.getElementsByClassName("settings")[0];
+
+    /*settingsIcon.addEventListener("click", function() {
+        if (settings.style.display == 'none') settings.style.display = 'block';
+        else settings.style.display = 'none';
+    })*/
+
+    function showSettings() {
+        if (settings.style.display == 'none') settings.style.display = 'block';
+        else settings.style.display = 'none';
+    }
 </script>
