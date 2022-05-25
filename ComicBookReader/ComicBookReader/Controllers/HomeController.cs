@@ -34,6 +34,13 @@ namespace ComicBookReader.Controllers
         public IActionResult ComicChapter(int id)
         {
             Chapter chapter = db.Chapters.Find(id);
+            int cbId = chapter.ComicBookId;
+            ComicBook comicBook = db.ComicBooks.Find(cbId);
+            comicBook.Chapters = db.Chapters.Where(ch => ch.ComicBookId == cbId).ToList();
+            int chaptersCount = comicBook.Chapters.Count();
+            int firstChapter = comicBook.Chapters.FirstOrDefault().ChapterId;
+            ViewBag.ChapterCount = chaptersCount;
+            ViewBag.FirstChapter = firstChapter;
             chapter.ComicPages = db.ComicPages.Where(cp => cp.ChapterId == id).OrderBy(cp => cp.PageNumber).ToList();
             return View(chapter);
         }

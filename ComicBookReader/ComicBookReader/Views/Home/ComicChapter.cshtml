@@ -1,6 +1,6 @@
 ﻿@model ComicBookReader.Models.Chapter
 @{
-    ViewData["Title"] = "Список страниц";
+    ViewData["Title"] = "Читать главу";
 }
 
 <!DOCTYPE html>
@@ -117,6 +117,7 @@
               opacity: 0.7;
               -webkit-transition: .2s;
               transition: opacity .2s;
+              margin-bottom: 20px;
             }
 
             .slider-page::-webkit-slider-thumb {
@@ -169,12 +170,36 @@
                 height: 60px;
                 width: 100%;
                 background-color: #aaa;
+                display: flex;
+            }
+
+            .nav-reader a {
+                color: #fff;
+            }
+
+            .nav-reader a:hover {
+                color: #ccc;
             }
         </style>
     </head>
     <body>
         <div class="nav-reader">
             <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
+            <div style="display: flex; justify-content: center; margin-left: auto; margin-right: auto;">
+                @{int prevCh = @Model.ChapterId - 1;}
+                @{int nextCh = @Model.ChapterId + 1;}
+                @if (@prevCh >= @ViewBag.FirstChapter)
+                {
+                    <a href="~/Home/ComicChapter/@prevCh">Предыдущая глава</a>
+                }
+                <p>@Model.ChapterName</p>
+                @if (@nextCh <= @ViewBag.ChapterCount)
+                {
+                    <a href="~/Home/ComicChapter/@nextCh">Следующая глава</a>
+                }
+            </div>
+           
+            
         </div>
         
         <section class="page-content">
@@ -194,14 +219,15 @@
               </div>
               
             }
-            <form name="pageForm">
-                <input name="enter" class="enter-page" type="text" />
-                <input name="submit" onclick="Complete();" class="submit-page" type="button" value="ok"/>
-            </form>
-            
             <div class="slidecontainer">
               <input  type="range" min="1" max="@Model.ComicPages.Count" value="1" class="slider-page" id="myRangePage">
             </div>
+
+            <form name="pageForm">
+                Перейти на страницу
+                <input name="enter" class="enter-page" type="text" style="width: 50px; border-radius: 10px;" />
+                <input name="submit" onclick="Complete();" class="submit-page" type="button" value="ok"/>
+            </form>
           </div>
 
           <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -221,6 +247,8 @@
     var slideIndex = 1;
     showSlides(slideIndex);
 
+    var sliderPage = document.getElementById("myRangePage");
+
     var cont = document.getElementsByClassName("containerr")[0];
     document.addEventListener("keydown", function (event) {
         if (event.keyCode == 39) {
@@ -236,6 +264,7 @@
     // Вперед/назад элементы управления
     function plusSlides(n) {
       showSlides(slideIndex += n);
+      sliderPage.value = slideIndex;
     }
 
     // Элементы управления миниатюрами изображений
@@ -256,18 +285,12 @@
 
     function Complete() {
         var pageNum = document.getElementsByClassName("enter-page")[0].value;
-        currentSlide(pageNum);
-        //alert(pageNum);
-    }
-    
-    function changePage() {
-    
+        currentSlide(Number(pageNum));
+        sliderPage.value = slideIndex;
     }
 
-    var sliderPage = document.getElementById("myRangePage");
-    
     sliderPage.addEventListener("mouseup", function() {
-        currentSlide(this.value);
+        currentSlide(Number(this.value));
     });
     
     
@@ -275,10 +298,12 @@
 
 <script>
     var slider = document.getElementById("myRange");
+    var sliderPage = document.getElementById("myRangePage");
     var pages = document.getElementsByClassName("img-page");
     pages.innerHTML = slider.value; // Отображение значения ползунка по умолчанию
     
     slider.addEventListener("mouseup", function() {
+        sliderPage.style.width = this.value + "px";
         for (i = 0; i < pages.length; i++) {
             pages[i].style.width = this.value + "px";
     }});
@@ -287,11 +312,6 @@
 <script>
     var settingsIcon = document.getElementsByClassName("settings-icon")[0];
     var settings = document.getElementsByClassName("settings")[0];
-
-    /*settingsIcon.addEventListener("click", function() {
-        if (settings.style.display == 'none') settings.style.display = 'block';
-        else settings.style.display = 'none';
-    })*/
 
     function showSettings() {
         if (settings.style.display == 'none') settings.style.display = 'block';
