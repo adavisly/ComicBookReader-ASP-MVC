@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
 	function setChecked(target) {
 		var checked = $(target).find("input[type='checkbox']:checked").length;
 		if (checked) {

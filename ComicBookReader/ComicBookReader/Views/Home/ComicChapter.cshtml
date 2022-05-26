@@ -7,203 +7,40 @@
 
 <html>
     <head>
-        <title>ComicBookReader</title>
-        <style>
-            .img-page {
-                width: 500px;
-                display: block;
-                margin-right: auto;
-                margin-left: auto;
-            }
-
-            * {
-              box-sizing: border-box;
-            }
-
-            .slide-img {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            /* Расположите контейнер изображения (необходимо расположить стрелки влево и вправо) */
-            .containerr {
-              position: relative;
-              display: block;
-              margin-left: 0px;
-              margin-right: 0px;
-            }
-
-            /* Скрыть изображения по умолчанию */
-            .mySlides {
-              display: none;
-            }
-
-            /* Добавить указатель при наведении на миниатюры изображений */
-            .cursor {
-              cursor: pointer;
-            }
-
-            /* Вперед и предыдущие кнопки */
-            .prev,
-            .next {
-              cursor: pointer;
-              width: auto;
-              padding-top: 100px;
-              padding-bottom: 100px;
-              padding-left: 40px;
-              padding-right: 40px;
-              color: #555;
-              font-weight: bold;
-              font-size: 20px;
-              border-radius: 0 3px 3px 0;
-              user-select: none;
-              -webkit-user-select: none;
-            }
-
-            /* Позиция "next кнопка" на право */
-            .next {
-              right: 0;
-              border-radius: 3px 0 0 3px;
-            }
-
-            /* При наведении курсора добавьте черный цвет фона с небольшим количеством прозрачного */
-            .prev:hover,
-            .next:hover {
-              background-color: #ccc;
-              color: #fff;
-            }
-
-            /* Номера текст (1/3 и т.д.) */
-            .numbertext {
-              text-align: center;
-              color: #000;
-              margin-top: 20px;
-            }
-
-
-            .slider {
-              margin-top: 20px;
-              -webkit-appearance: none;
-              width: 250px;
-              height: 3px;
-              margin-left: 25px;
-              border-radius: 5px;  
-              background: #fff;
-              outline: none;
-              opacity: 0.7;
-              -webkit-transition: .2s;
-              transition: opacity .2s;
-            }
-
-            .slider::-webkit-slider-thumb {
-              -webkit-appearance: none;
-              appearance: none;
-              width: 25px;
-              height: 25px;
-              border-radius: 50%; 
-              background: #fff;
-              cursor: pointer;
-            }
-
-            .slider-page {
-              margin-top: 20px;
-              -webkit-appearance: none;
-              width: 500px;
-              height: 5px;
-              border-radius: 5px;  
-              background: #555;
-              outline: none;
-              opacity: 0.7;
-              -webkit-transition: .2s;
-              transition: opacity .2s;
-              margin-bottom: 20px;
-            }
-
-            .slider-page::-webkit-slider-thumb {
-              -webkit-appearance: none;
-              appearance: none;
-              width: 25px;
-              height: 25px;
-              border-radius: 50%; 
-              background: #555;
-              cursor: pointer;
-            }
-
-            .page-content {
-                position: relative;
-            }
-
-             .settings {
-                display: none;
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                float: right;
-                height: 400px;
-                width: 300px;
-                background-color: #aaa;
-                border-radius: 20px;
-            }
-
-            .settings h5 {
-                color: #fff;
-                text-align: center;
-            }
-
-            .slidecontainer {
-                margin-top: 20px;
-            }
-
-            .settings-icon {
-                cursor: pointer;
-                margin-top: 20px;
-                margin-left: 20px;
-            }
-
-            .settings-icon img {
-                width: 50px;
-                margin-top: 5px;
-            }
-
-            .nav-reader {
-                height: 60px;
-                width: 100%;
-                background-color: #aaa;
-                display: flex;
-            }
-
-            .nav-reader a {
-                color: #fff;
-            }
-
-            .nav-reader a:hover {
-                color: #ccc;
-            }
-        </style>
+        <link href="~/css/ComicChapter.css" rel="stylesheet" />
     </head>
     <body>
         <div class="nav-reader">
-            <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
-            <div style="display: flex; justify-content: center; margin-left: auto; margin-right: auto;">
+            
+         </div>
+            <div class="chapters-nav">
+                <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
                 @{int prevCh = @Model.ChapterId - 1;}
                 @{int nextCh = @Model.ChapterId + 1;}
                 @if (@prevCh >= @ViewBag.FirstChapter)
                 {
-                    <a href="~/Home/ComicChapter/@prevCh">Предыдущая глава</a>
+                    <a class="ch-link" href="~/Home/ComicChapter/@prevCh">Предыдущая глава</a>
                 }
-                <p>@Model.ChapterName</p>
+                else
+                {
+                    <a class="ch-link" style="background-color: #ccc;">Предыдущая глава</a>
+                }
+                <a class="cb-link" href="~/Home/ComicBook/@Model.ComicBookId">@Model.ChapterName</a>
                 @if (@nextCh <= @ViewBag.ChapterCount)
                 {
-                    <a href="~/Home/ComicChapter/@nextCh">Следующая глава</a>
+                    <a class="ch-link" href="~/Home/ComicChapter/@nextCh">Следующая глава</a>
+                }
+                else
+                {
+                    <a class="ch-link" style="background-color: #ccc;">Следующая глава</a>
                 }
             </div>
            
             
-        </div>
+        
         
         <section class="page-content">
-            <div class="slide-img">
+            <div class="slide-img" style="display: flex;">
             <!-- Вперед и назад кнопки -->
           <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <!-- Контейнер для галереи изображений -->
@@ -233,10 +70,28 @@
           <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
         
-        <div class="settings">
+        <div class="vertical-pages" style="display: none;">
+            @for (int j = 0; j < @Model.ComicPages.Count; j++)
+            {
+              <div>
+                  <img class="img-page" src="@Model.ComicPages.ElementAt(j).PageImage">
+              </div>
+              
+            }
+        </div>
+
+        <div class="settings" style="display: none;">
             <div class="slidecontainer">
                 <h5>Размер изображения</h5>
               <input type="range" min="400" max="1200" value="500" class="slider" id="myRange">
+            </div>
+
+            <div class="reader-mode">
+                <h5>Режим чтения</h5>
+                <div class="reader-mode-btns">
+                    <a id="vert" class="reader-mode-btn" onclick="vertical();">Вертикальный</a>
+                    <a id="hor" class="reader-mode-btn" onclick="horizontal();">Горизонтальный</a>
+                </div>
             </div>
         </div>
         </section>
@@ -312,9 +167,36 @@
 <script>
     var settingsIcon = document.getElementsByClassName("settings-icon")[0];
     var settings = document.getElementsByClassName("settings")[0];
+    var sl = document.getElementsByClassName("slide-img")[0];
+    var vp = document.getElementsByClassName("vertical-pages")[0];
 
     function showSettings() {
         if (settings.style.display == 'none') settings.style.display = 'block';
         else settings.style.display = 'none';
+    }
+
+    sl.addEventListener ("click", e => {
+        settings.style.display = 'none';
+    });
+
+    vp.addEventListener ("click", e => {
+        settings.style.display = 'none';
+    });
+</script>
+
+<script>
+    var verticalMode = document.getElementById("vert");
+    var horizontalMode = document.getElementById("hor");
+    var verticalPages = document.getElementsByClassName("vertical-pages")[0];
+    var horizontalPages = document.getElementsByClassName("slide-img")[0];
+
+    function vertical() {
+        horizontalPages.style.display = 'none';
+        verticalPages.style.display = 'block';
+    }
+
+    function horizontal() {
+        verticalPages.style.display = 'none';
+        horizontalPages.style.display = 'flex';
     }
 </script>
