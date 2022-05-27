@@ -5,7 +5,48 @@
 @{
 }
 <head>
-    
+    <style>
+        .status-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.review-nav, .reading-nav, .read-nav, .wish-nav, .favourite-nav {
+    cursor: pointer;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+.reading-nav {
+    background-color: #e8e2a2;
+}
+
+    .review-nav:hover, .reading-nav:hover, .read-nav:hover, .wish-nav:hover, .favourite-nav:hover {
+        
+        color: #aaa;
+    }
+
+.review-mark {
+    float: right;
+    display: flex;
+}
+
+.reviews {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.user-logo-review {
+    height: 50px;
+    width: 50px;
+}
+    </style>
 </head>
 <body>
     <section class="content">
@@ -86,6 +127,335 @@
     </div>
   </div>
     </section>
+
+    <section class="content">
+        <div class="status-nav">
+            <a class="reading-nav" onclick="showBlock(1);"><h5>Читаю</h5></a>
+            <a class="read-nav" onclick="showBlock(2);"><h5>Прочитано</h5></a>
+            <a class="wish-nav" onclick="showBlock(3);"><h5>Хочу прочитать</h5></a>
+            <a class="favourite-nav" onclick="showBlock(4);"><h5>Любимое</h5></a>
+            <a class="review-nav" onclick="showBlock(5);"><h5>Мои отзывы</h5></a>
+        </div>
+        <hr />
+            <div class="reading" style="display: block;">
+                <div class="comicbook-previews">
+                            <a href="~/Home/ComicBook/1" class="comicbook-preview">
+                                <img class="img-comicbook" src="/img/ComicBooks/Avatar_The_Promise/cover.jpg" />
+                                <p>Аватар: Легенда об Аанге - Поиск1</p>
+                            </a>
+                </div>
+            </div>
+            <div class="read" style="display: none;">
+                <div class="comicbook-previews">
+                            <a href="~/Home/ComicBook/1" class="comicbook-preview">
+                                <img class="img-comicbook" src="/img/ComicBooks/Avatar_The_Promise/cover.jpg" />
+                                <p>Аватар: Легенда об Аанге - Поиск2</p>
+                            </a>
+                </div>
+            </div>
+            <div class="wish" style="display: none;">
+                <div class="comicbook-previews">
+                            <a href="~/Home/ComicBook/1" class="comicbook-preview">
+                                <img class="img-comicbook" src="/img/ComicBooks/Avatar_The_Promise/cover.jpg" />
+                                <p>Аватар: Легенда об Аанге - Поиск3</p>
+                            </a>
+                </div>
+            </div>
+            <div class="favourite" style="display: none;">
+                <div class="comicbook-previews">
+                            <a href="~/Home/ComicBook/1" class="comicbook-preview">
+                                <img class="img-comicbook" src="/img/ComicBooks/Avatar_The_Promise/cover.jpg" />
+                                <p>Аватар: Легенда об Аанге - Поиск4</p>
+                            </a>
+                </div>
+            </div>
+            <div class="reviews" style="display: none;">
+                <div class="review">
+                    <div class="review-mark">
+                        <img class="star-icon rev-star" src="/img/star_icon.png" />
+                        <p class="rev-star">5 / 5</p>
+                    </div>
+                        <p>Название</p>
+                    <p class="review-value">Отзыв</p>
+                </div>
+            </div>
+    </section>
     </body>
+    <script>
+
+        var reading = document.getElementsByClassName("reading")[0];
+        var read = document.getElementsByClassName("read")[0];
+        var wish = document.getElementsByClassName("wish")[0];
+        var favourite = document.getElementsByClassName("favourite")[0];
+        var reviews = document.getElementsByClassName("reviews")[0];
+
+        var reading_nav = document.getElementsByClassName("reading-nav")[0];
+        var read_nav = document.getElementsByClassName("read-nav")[0];
+        var wish_nav = document.getElementsByClassName("wish-nav")[0];
+        var favourite_nav = document.getElementsByClassName("favourite-nav")[0];
+        var review_nav = document.getElementsByClassName("review-nav")[0];
+
+
+        var st = 1;
+        
+        function showBlock(stat) {
+            
+            if (st == 1) { hideThisBlock(reading, reading_nav);  }
+            else if (st == 2) { hideThisBlock(read, read_nav); }
+            else if (st == 3) { hideThisBlock(wish, wish_nav); }
+            else if (st == 4) { hideThisBlock(favourite, favourite_nav); }
+            else if (st == 5) { hideThisBlock(reviews, review_nav); }
+
+            if (stat == 1) { 
+                showThisBlock(reading, reading_nav); 
+            } else if (stat == 2) { 
+                showThisBlock(read, read_nav); 
+            } else if (stat == 3) { 
+                showThisBlock(wish, wish_nav); 
+            } else if (stat == 4) { 
+                showThisBlock(favourite, favourite_nav); 
+            } else if (stat == 5) { 
+                showThisBlock(reviews, review_nav); 
+            }
+
+            st = stat;
+        }
+        
+        function showThisBlock(thisBlocks, thisBlock_navs) {
+            thisBlocks.style.display = "block";
+            thisBlock_navs.style.backgroundColor = "#e8e2a2";
+        }
+
+        function hideThisBlock(thisBlockh, thisBlock_navh) {
+            thisBlockh.style.display = "none";
+            thisBlock_navh.style.backgroundColor = "#fff";
+
+            /*
+            thisBlock_navh.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            thisBlock_navh.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            */
+        }
+
+
+    </script>
     
+    <script>
+        
+        /*
+        function showReading() {
+
+            reading.style.display = "block";
+            read.style.display = "none";
+            wish.style.display = "none";
+            favourite.style.display = "none";
+            reviews.style.display = "none";
+
+            read_nav.style.backgroundColor = "#fff";
+            wish_nav.style.backgroundColor = "#fff";
+            favourite_nav.style.backgroundColor = "#fff";
+            reviews_nav.style.backgroundColor = "#fff";
+
+            read_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            wish_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            favourite_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reviews_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            read_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            wish_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            favourite_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            reviews_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+
+            reading_nav.style.backgroundColor = "#e8e2a2";
+        }
+
+        function showRead() {
+
+            reading.style.display = "none";
+            read.style.display = "block";
+            wish.style.display = "none";
+            favourite.style.display = "none";
+            reviews.style.display = "none";
+
+            reading_nav.style.backgroundColor = "#fff";
+            wish_nav.style.backgroundColor = "#fff";
+            favourite_nav.style.backgroundColor = "#fff";
+            reviews_nav.style.backgroundColor = "#fff";
+
+            reading_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            wish_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            favourite_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reviews_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            reading_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            wish_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            favourite_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            reviews_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+
+            read_nav.style.backgroundColor = "#e8e2a2";
+        }
+
+        function showWish() {
+
+            reading.style.display = "none";
+            read.style.display = "none";
+            wish.style.display = "block";
+            favourite.style.display = "none";
+            reviews.style.display = "none";
+
+            read_nav.style.backgroundColor = "#fff";
+            reading_nav.style.backgroundColor = "#fff";
+            favourite_nav.style.backgroundColor = "#fff";
+            reviews_nav.style.backgroundColor = "#fff";
+
+            read_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reading_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            favourite_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reviews_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            reading_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            read_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            favourite_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            reviews_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+
+            wish_nav.style.backgroundColor = "#e8e2a2";
+        }
+
+        function showFavourite() {
+
+            reading.style.display = "none";
+            read.style.display = "none";
+            wish.style.display = "none";
+            favourite.style.display = "block";
+            reviews.style.display = "none";
+
+            read_nav.style.backgroundColor = "#fff";
+            wish_nav.style.backgroundColor = "#fff";
+            reading_nav.style.backgroundColor = "#fff";
+            reviews_nav.style.backgroundColor = "#fff";
+
+            read_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            wish_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reading_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reviews_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            reading_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            wish_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            read_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            reviews_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+
+            favourite_nav.style.backgroundColor = "#e8e2a2";
+        }
+
+        function showReviews() {
+
+            reading.style.display = "none";
+            read.style.display = "none";
+            wish.style.display = "none";
+            favourite.style.display = "none";
+            reviews.style.display = "block";
+
+            read_nav.style.backgroundColor = "#fff";
+            wish_nav.style.backgroundColor = "#fff";
+            favourite_nav.style.backgroundColor = "#fff";
+            reading_nav.style.backgroundColor = "#fff";
+
+            read_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            wish_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            favourite_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+            reading_nav.addEventListener("mouseover", function() {
+               this.style.backgroundColor = "#e8e2a2";
+            })
+
+            reading_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            wish_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            favourite_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+            read_nav.addEventListener("mouseout", function() {
+               this.style.backgroundColor = "#fff";
+            })
+
+            reviews_nav.style.backgroundColor = "#e8e2a2";
+        }
+        */
+    </script>
    

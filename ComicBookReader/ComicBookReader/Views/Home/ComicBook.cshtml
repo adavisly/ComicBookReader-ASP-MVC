@@ -27,8 +27,18 @@
                 <h5>@Model.ComicBookTitle</h5>
                 <p class="cb-info-item">Год выхода: @Model.ComicBookYear </p>
                 <p class="cb-info-item">Язык: @Model.ComicBookLanguage</p>
-                <p class="cb-info-item">Автор: </p>
-                <p class="cb-info-item">Жанры: </p>
+                <p class="cb-info-item">Авторы: 
+                    @foreach (var author in @Model.Authors)
+                    {
+                        <a>@author.AuthorName</a>
+                    }
+                </p>
+                <p class="cb-info-item">Жанры: 
+                    @foreach (var genre in @Model.Genres)
+                    {
+                        <a>@genre.GenreName</a>
+                    }
+                </p>
                 <p class="cb-info-item">Описание: @Model.ComicBookDescription</p>
             </div>
         </div>

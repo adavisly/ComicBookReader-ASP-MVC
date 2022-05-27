@@ -107,11 +107,11 @@
     var cont = document.getElementsByClassName("containerr")[0];
     document.addEventListener("keydown", function (event) {
         if (event.keyCode == 39) {
-            console.log("ar");
+            //console.log("ar");
             plusSlides(1);
         }
         else if (event.keyCode == 37) {
-            console.log("al");
+            //console.log("al");
             plusSlides(-1);
         }
     });
@@ -193,10 +193,14 @@
     function vertical() {
         horizontalPages.style.display = 'none';
         verticalPages.style.display = 'block';
+        verticalMode.style.fontWeight = 'bold';
+        horizontalMode.style.fontWeight = 'normal';
     }
 
     function horizontal() {
         verticalPages.style.display = 'none';
         horizontalPages.style.display = 'flex';
+        verticalMode.style.fontWeight = 'normal';
+        horizontalMode.style.fontWeight = 'bold';
     }
 </script>

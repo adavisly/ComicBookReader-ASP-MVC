@@ -60,4 +60,37 @@
   display: flex;
 }
 
+.status-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.review-nav, .reading-nav, .read-nav, .wish-nav, .favourite-nav {
+    cursor: pointer;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+    .review-nav, .reading-nav, .read-nav, .wish-nav, .favourite-nav :hover {
+        background-color: #e8e2a2;
+        color: black;
+    }
+
+.review-mark {
+    float: right;
+    display: flex;
+}
+
+.reviews {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.user-logo-review {
+    height: 50px;
+    width: 50px;
+}

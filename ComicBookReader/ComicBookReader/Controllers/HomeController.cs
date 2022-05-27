@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace ComicBookReader.Controllers
 {
@@ -28,6 +30,8 @@ namespace ComicBookReader.Controllers
         {
             ComicBook comicBook = db.ComicBooks.Find(id);
             comicBook.Chapters = db.Chapters.Where(ch => ch.ComicBookId == id).ToList();
+            comicBook.Authors = db.Authors.Include(a => a.ComicBooks).ToList();
+            comicBook.Genres = db.Genres.Include(g => g.ComicBooks).ToList();
             return View(comicBook);
         }
 
@@ -43,6 +47,12 @@ namespace ComicBookReader.Controllers
             ViewBag.FirstChapter = firstChapter;
             chapter.ComicPages = db.ComicPages.Where(cp => cp.ChapterId == id).OrderBy(cp => cp.PageNumber).ToList();
             return View(chapter);
+        }
+
+        public string TextRecognition(string img)
+        {
+
+            return img;
         }
 
         [Authorize]
