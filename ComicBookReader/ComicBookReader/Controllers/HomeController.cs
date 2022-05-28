@@ -80,7 +80,7 @@ namespace ComicBookReader.Controllers
 
 
         [HttpPost]
-        public string CropImage(int x1, int y1, int x2, int y2, int w, int h, int imgW, int imgH, int cpId)
+        public IActionResult CropImage(int x1, int y1, int x2, int y2, int w, int h, int imgW, int imgH, int cpId)
         {
             string lang = "eng";
 
@@ -120,7 +120,7 @@ namespace ComicBookReader.Controllers
 
             tesseract.Dispose();
 
-            return text;
+            return View("RecognizeText", cp);
         }
 
         private string ProcessImage(string croppedImage)
