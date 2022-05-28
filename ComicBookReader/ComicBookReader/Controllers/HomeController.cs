@@ -8,7 +8,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-
+using System.IO;
+using Emgu;
+using Emgu.CV;
+using Emgu.CV.Util;
+using Emgu.CV.OCR;
+using Emgu.CV.Structure;
+using Emgu.Util;
 
 namespace ComicBookReader.Controllers
 {
@@ -49,10 +55,45 @@ namespace ComicBookReader.Controllers
             return View(chapter);
         }
 
-        public string TextRecognition(string img)
+        public IActionResult RecognizeText(int id)
         {
+            ComicPage cp = db.ComicPages.Find(id);
+            string lang = "eng";
+            string filePath = "wwwroot" + cp.PageImage;
 
-            return img;
+            Tesseract tesseract = new Tesseract("wwwroot/TrainedData",
+                        lang, OcrEngineMode.TesseractLstmCombined);
+
+            tesseract.SetImage(new Image<Bgr, byte>(filePath));
+
+            tesseract.Recognize();
+
+            ViewBag.Text = tesseract.GetUTF8Text();
+
+            tesseract.Dispose();
+
+            return View(cp);
+        }
+
+        private string ProcessImage(string croppedImage)
+        {
+            string filePath = String.Empty;
+            try
+            {
+                string base64 = croppedImage;
+                byte[] bytes = Convert.FromBase64String(base64.Split(',')[1]);
+                filePath = "/croppedImages/Photo/img" + Guid.NewGuid() + ".jpg";
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                string st = ex.Message;
+            }
+            return filePath;
         }
 
         [Authorize]

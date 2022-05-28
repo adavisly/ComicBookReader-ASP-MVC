@@ -10,9 +10,7 @@
         <link href="~/css/ComicChapter.css" rel="stylesheet" />
     </head>
     <body>
-        <div class="nav-reader">
-            
-         </div>
+        
             <div class="chapters-nav">
                 <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
                 @{int prevCh = @Model.ChapterId - 1;}
@@ -51,10 +49,10 @@
           @for (i = 0; i < @Model.ComicPages.Count; i++)
             {
               <div class="mySlides">
+                  <a href="~/Home/RecognizeText/@Model.ComicPages.ElementAt(i).ComicPageId" class="rec">Распознать</a>
                   <img class="img-page" src="@Model.ComicPages.ElementAt(i).PageImage">
                   <div class="numbertext"><p>@Model.ComicPages.ElementAt(i).PageNumber / @Model.ComicPages.Count</p></div>
               </div>
-              
             }
             <div class="slidecontainer">
               <input  type="range" min="1" max="@Model.ComicPages.Count" value="1" class="slider-page" id="myRangePage">

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/jquery.Jcrop.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.Jcrop.js"></script>
+
+            <script type="text/javascript">
+                
+                jQuery(document).ready(function(){  
+  
+                    jQuery('#imgUpload').Jcrop({  
+                        onChange: showCoords,  
+                        onSelect: showCoords  
+                    });  
+                    
+                    function showCoords(c)  
+                    {  
+                        jQuery('#x1').val(c.x);  
+                        jQuery('#y1').val(c.y);  
+                        jQuery('#x2').val(c.x2);  
+                        jQuery('#y2').val(c.y2);  
+                        jQuery('#w').val(c.w);  
+                        jQuery('#h').val(c.h);  
+                    };  
+                });  
+
+            </script>
+    <title>Document</title>
+</head>
+<body>
+    <img id="imgUpload" src="img/ComicBooks/Avatar_The_Promise/cover.jpg" style="width: 500px;"/>
+    <form onsubmit="return false;" class="coords">  
+        <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>  
+        <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>  
+        <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>  
+        <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>  
+        <label>W <input type="text" size="4" id="w" name="w" /></label>  
+        <label>H <input type="text" size="4" id="h" name="h" /></label>  
+    </form>  
+    <button id="cropButton"></button>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿@model ComicBookReader.Models.ComicPage
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<html>
+    <head>  
+    <link href="~/css/ComicChapter.css" rel="stylesheet" />
+    <link href="~/css/jquery.Jcrop.css" rel="stylesheet" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.Jcrop.js"></script>
+
+            <script type="text/javascript">
+                
+                jQuery(document).ready(function(){  
+                    jQuery('#imgRec').Jcrop({  
+                        onChange: showCoords,  
+                        onSelect: showCoords,
+                        onRelease: showCoords
+                    });  
+                    
+                    function showCoords(c)  
+                    {  
+                        jQuery('#x1').val(c.x);  
+                        jQuery('#y1').val(c.y);  
+                        jQuery('#x2').val(c.x2);  
+                        jQuery('#y2').val(c.y2);  
+                        jQuery('#w').val(c.w);  
+                        jQuery('#h').val(c.h);  
+                    };  
+                });  
+
+            </script>
+    </head>
+    <body>
+        <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
+        <div class="settings" style="display: none; top: 120px; height: 150px;">
+            <div class="slidecontainer">
+                    <h5>Размер изображения</h5>
+                  <input type="range" min="400" max="1200" value="500" class="slider" id="myRange">
+            </div>
+        </div>
+        <div id="recTextBlock" style="display: block; float: right; margin-top: 60px; margin-right: 40px;">
+            <p>Распознанный текст:</p>
+            <textarea id="recText" type="text" style="width: 400px; height: 400px;">@ViewBag.Text</textarea>
+        </div>
+        <img id="imgRec" src="@Model.PageImage" style="width: 500px; margin: 20px; "/>
+        <form onsubmit="return false;" class="coords">  
+            <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>  
+            <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>  
+            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>  
+            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>  
+            <label>W <input type="text" size="4" id="w" name="w" /></label>  
+            <label>H <input type="text" size="4" id="h" name="h" /></label>  
+        </form>  
+        <img id="imgCropped" src="#" style="display:none;" />
+           
+        
+        
+    </body>
+</html>
+
+<script>
+    var slider = document.getElementById("myRange");
+    var img = document.getElementById("imgRec");
+    img.innerHTML = slider.value; // Отображение значения ползунка по умолчанию
+    
+    slider.addEventListener("mouseup", function() {
+        img.style.width = this.value + "px";
+    });
+</script>
+
+<script>
+    var settingsIcon = document.getElementsByClassName("settings-icon")[0];
+    var settings = document.getElementsByClassName("settings")[0];
+
+    function showSettings() {
+        if (settings.style.display == 'none') settings.style.display = 'block';
+        else settings.style.display = 'none';
+    }
+
+</script>
