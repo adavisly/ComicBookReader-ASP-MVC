@@ -49,9 +49,9 @@
           @for (i = 0; i < @Model.ComicPages.Count; i++)
             {
               <div class="mySlides">
-                  <a href="~/Home/RecognizeText/@Model.ComicPages.ElementAt(i).ComicPageId" class="rec">Распознать</a>
                   <img class="img-page" src="@Model.ComicPages.ElementAt(i).PageImage">
                   <div class="numbertext"><p>@Model.ComicPages.ElementAt(i).PageNumber / @Model.ComicPages.Count</p></div>
+                  <a href="~/Home/RecognizeText/@Model.ComicPages.ElementAt(i).ComicPageId" class="rec" id="btnRec" style="display: inline;">Распознать</a>
               </div>
             }
             <div class="slidecontainer">
@@ -89,6 +89,14 @@
                 <div class="reader-mode-btns">
                     <a id="vert" class="reader-mode-btn" onclick="vertical();">Вертикальный</a>
                     <a id="hor" class="reader-mode-btn" onclick="horizontal();">Горизонтальный</a>
+                </div>
+            </div>
+
+            <div class="rec-mode">
+                <h5>Режим распознавания</h5>
+                <div class="rec-mode-btns">
+                    <a id="recOn" class="reader-mode-btn" onclick="recTurnOn();">Включен</a>
+                    <a id="recOff" class="reader-mode-btn" onclick="recTurnOff();">Выключен</a>
                 </div>
             </div>
         </div>
@@ -200,5 +208,23 @@
         horizontalPages.style.display = 'flex';
         verticalMode.style.fontWeight = 'normal';
         horizontalMode.style.fontWeight = 'bold';
+    }
+</script>
+
+<script>
+    var recOn = document.getElementById("recOn");
+    var recOff = document.getElementById("recOff");
+    var btnRec = document.getElementById("btnRec");
+
+    function recTurnOn() {
+        btnRec.style.display = 'inline';
+        recOn.style.fontWeight = 'bold';
+        recOff.style.fontWeight = 'normal';
+    }
+
+    function recTurnOff() {
+        btnRec.style.display = 'none';
+        recOn.style.fontWeight = 'normal';
+        recOff.style.fontWeight = 'bold';
     }
 </script>

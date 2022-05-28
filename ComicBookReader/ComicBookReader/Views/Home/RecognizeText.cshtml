@@ -7,34 +7,10 @@
 
 <html>
     <head>  
-    <link href="~/css/ComicChapter.css" rel="stylesheet" />
-    <link href="~/css/jquery.Jcrop.css" rel="stylesheet" />
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery.Jcrop.js"></script>
-
-            <script type="text/javascript">
-                
-                jQuery(document).ready(function(){  
-                    jQuery('#imgRec').Jcrop({  
-                        onChange: showCoords,  
-                        onSelect: showCoords,
-                        onRelease: showCoords
-                    });  
-                    
-                    function showCoords(c)  
-                    {  
-                        jQuery('#x1').val(c.x);  
-                        jQuery('#y1').val(c.y);  
-                        jQuery('#x2').val(c.x2);  
-                        jQuery('#y2').val(c.y2);  
-                        jQuery('#w').val(c.w);  
-                        jQuery('#h').val(c.h);  
-                    };  
-                });  
-
-            </script>
+        <link href="~/css/ComicChapter.css" rel="stylesheet" />
     </head>
     <body>
+        @*
         <a class="settings-icon" onclick="showSettings()"><img src="~/img/settings_icon.png" /></a>
         <div class="settings" style="display: none; top: 120px; height: 150px;">
             <div class="slidecontainer">
@@ -42,11 +18,16 @@
                   <input type="range" min="400" max="1200" value="500" class="slider" id="myRange">
             </div>
         </div>
-        <div id="recTextBlock" style="display: block; float: right; margin-top: 60px; margin-right: 40px;">
+        *@
+        <div id="recTextBlock" style="position: fixed; top: 100px; right: 40px;">
             <p>Распознанный текст:</p>
             <textarea id="recText" type="text" style="width: 400px; height: 400px;">@ViewBag.Text</textarea>
         </div>
-        <img id="imgRec" src="@Model.PageImage" style="width: 500px; margin: 20px; "/>
+        <div id="cropContainer">
+            <div id="cropDisplay">
+                <img src="@Model.PageImage" id="imgRec" style="width: 800px; margin: 20px;"/>
+            </div>
+        </div>
         <form onsubmit="return false;" class="coords">  
             <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>  
             <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>  
@@ -61,7 +42,7 @@
         
     </body>
 </html>
-
+@*
 <script>
     var slider = document.getElementById("myRange");
     var img = document.getElementById("imgRec");
@@ -82,3 +63,48 @@
     }
 
 </script>
+*@
+@section scripts
+{
+    <script src="~/js/jquery.Jcrop.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#imgRec').Jcrop({
+                onChange: showCoords,
+                onSelect: showCoords
+            });
+        });
+
+        function showCoords(c)  
+                    {  
+                        jQuery('#x1').val(c.x);  
+                        jQuery('#y1').val(c.y);  
+                        jQuery('#x2').val(c.x2);  
+                        jQuery('#y2').val(c.y2);  
+                        jQuery('#w').val(c.w);  
+                        jQuery('#h').val(c.h);  
+                    };  
+
+        function showPreview(coords) {
+            if (parseInt(coords.w) > 0) {
+                $('#Top').val(coords.y);
+                $('#Left').val(coords.x);
+                $('#Bottom').val(coords.y2);
+                $('#Right').val(coords.x2);
+
+                var width = 1280;
+                var height = 1920;
+                var rx = 100 / coords.w;
+                var ry = 100 / coords.h;
+
+                $('#preview').css({
+                    width: Math.round(rx * width) + 'px',
+                    height: Math.round(ry * height) + 'px',
+                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+                });
+            }
+            
+        }
+    </script>
+}

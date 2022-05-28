@@ -218,6 +218,13 @@
     margin-right: 15px;
 }
 
+.rec-mode-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
 .reader-mode-btn {
     color: #fff;
     cursor: pointer;
@@ -229,4 +236,28 @@
 
 #hor {
     font-weight: bold;
+}
+
+#recOff {
+    font-weight: bold;
+}
+
+.rec {
+    text-align: center;
+    background-color: #ccc;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+}
+
+.rec:hover {
+    color: #000;
+    background-color: #bbb;
+}
+
+.rec-mode {
+    margin-top: 20px;
 }
