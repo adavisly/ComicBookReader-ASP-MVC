@@ -12,10 +12,10 @@
         <style>
             #preview-pane {  
                   display: block;  
-                  position: absolute;  
+                  position: fixed;  
                   z-index: 2000;  
-                  top: 10px;  
-                  right: -400px;  
+                  top: 80px;  
+                  right: 20px;  
                   padding: 6px;  
                   border: 1px rgba(0,0,0,.4) solid;  
                   background-color: white;  
@@ -46,13 +46,10 @@
             </div>
         </div>
         *@
-        <div id="recTextBlock" style="position: fixed; top: 100px; right: 40px;">
-            <p>Распознанный текст:</p>
-            <textarea id="recText" type="text" style="width: 400px; height: 400px;">@ViewBag.Text</textarea>
-        </div>
+        
         <div id="cropContainer">
             <div id="cropDisplay">
-                <img src="@Model.PageImage" id="imgRec" style="width: 600px; margin: 20px;"/>
+                <img src="@Model.PageImage" id="imgRec" style="margin: 20px;"/>
             </div>
             <div id="preview-pane">  
                 <div class="preview-container">  
@@ -60,17 +57,28 @@
                 </div>  
             </div>  
         </div>
-        <form onsubmit="return false;" class="coords">  
-            <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>  
-            <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>  
-            <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>  
-            <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>  
-            <label>W <input type="text" size="4" id="w" name="w" /></label>  
-            <label>H <input type="text" size="4" id="h" name="h" /></label>  
-        </form>  
-        <img id="imgCropped" src="#" style="display:none;" />
-           
+
+          <form action="/Home/CropImage" method="post">
+            <label>X1 <input type="number" size="4" id="x1" name="x1" /></label>  
+            <label>Y1 <input type="number" size="4" id="y1" name="y1" /></label>  
+            <label>X2 <input type="number" size="4" id="x2" name="x2" /></label>  
+            <label>Y2 <input type="number" size="4" id="y2" name="y2" /></label>  
+            <label>W <input type="number" size="4" id="w" name="w" /></label>  
+            <label>H <input type="number" size="4" id="h" name="h" /></label>  
+            <input type="number" size="4" name="imgW" id="imgW" />
+            <input type="number" size="4" name="imgH" id="imgH" />
+            <input type="number" size="4" name="cpId" id="cpId" value="@Model.ComicPageId" />
+            <input type="submit" value="Распознать"/>
+           </form>
         
+
+        <img id="imgCropped" src="#" style="display:none;" />
+         
+        <div id="recTextBlock" style="position: fixed; top: 500px; right: 40px;">
+            <p>Распознанный текст:</p>
+            
+            <textarea id="recText" type="text" style="width: 190px; height: 200px;">@ViewBag.Text</textarea>
+        </div>
         
     </body>
 </html>
@@ -101,6 +109,7 @@
     <script src="~/js/jquery.Jcrop.js"></script>
     <script type="text/javascript">
 
+       
         var jcrop_api,  
         boundx,  
         boundy,  
@@ -108,9 +117,19 @@
         $preview = $('#preview-pane'),  
         $pcnt = $('#preview-pane .preview-container'),  
         $pimg = $('#preview-pane .preview-container img'),  
+        $imgR = $('#imgRec'), 
+        imgRWidth = $imgR.width(),
+        imgRHeight = $imgR.height(),
   
         xsize = $pcnt.width(),  
         ysize = $pcnt.height();  
+
+        
+        jQuery('#imgW').val(imgRWidth);
+        jQuery('#imgH').val(imgRHeight);
+
+        console.log(imgRWidth);
+        console.log(imgRHeight);
 
         $(function() {
             $('#imgRec').Jcrop({
@@ -132,10 +151,7 @@
         function showCoords(c)  { 
 
               if (parseInt(c.w) > 0)  
-              {  
-
-                  var rx = xsize / c.w;  
-                  var ry = ysize / c.h;  
+              {   
 
                   $pcnt.css({  
                       width: c.w,
@@ -144,13 +160,11 @@
 
   
                 $pimg.css({  
-                  width: Math.round(boundx) + 'px',  
-                  height: Math.round(boundy) + 'px',  
-                  marginLeft: '-' + Math.round(c.x) + 'px',  
-                  marginTop: '-' + Math.round(c.y) + 'px'  
+                  width: boundx + 'px',  
+                  height: boundy + 'px',  
+                  marginLeft: '-' + c.x + 'px',  
+                  marginTop: '-' + c.y + 'px'  
                 });  
-
-                console.log(boundx, boundy);
               }  
 
              jQuery('#x1').val(c.x);  
@@ -161,28 +175,7 @@
              jQuery('#h').val(c.h);  
          };  
 
-
-
-        function showPreview(coords) {
-            if (parseInt(coords.w) > 0) {
-                $('#Top').val(coords.y);
-                $('#Left').val(coords.x);
-                $('#Bottom').val(coords.y2);
-                $('#Right').val(coords.x2);
-
-                var width = 1280;
-                var height = 1920;
-                var rx = 100 / coords.w;
-                var ry = 100 / coords.h;
-
-                $('#preview').css({
-                    width: Math.round(rx * width) + 'px',
-                    height: Math.round(ry * height) + 'px',
-                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
-                });
-            }
             
-        }
+        
     </script>
 }

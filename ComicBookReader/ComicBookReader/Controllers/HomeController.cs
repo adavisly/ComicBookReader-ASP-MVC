@@ -15,6 +15,9 @@ using Emgu.CV.Util;
 using Emgu.CV.OCR;
 using Emgu.CV.Structure;
 using Emgu.Util;
+using System.Web.Helpers;
+using System.Drawing;
+using System.Web;
 
 namespace ComicBookReader.Controllers
 {
@@ -73,6 +76,51 @@ namespace ComicBookReader.Controllers
             tesseract.Dispose();
 
             return View(cp);
+        }
+
+
+        [HttpPost]
+        public string CropImage(int x1, int y1, int x2, int y2, int w, int h, int imgW, int imgH, int cpId)
+        {
+            string lang = "eng";
+
+            ComicPage cp = db.ComicPages.Find(cpId);
+
+            string newFileName = Guid.NewGuid() + ".jpg";
+            string newFilePath = "wwwroot/img/crop/";
+
+            string filePath = Path.Combine(newFilePath, newFileName);
+
+            System.IO.File.Copy("wwwroot" + cp.PageImage, filePath);
+                Image orgImg = Image.FromFile(filePath);
+                Rectangle CropArea = new Rectangle(
+                    Convert.ToInt32(x1),
+                    Convert.ToInt32(y1),
+                    Convert.ToInt32(w),
+                    Convert.ToInt32(h));
+                    Bitmap bitMap = new Bitmap(CropArea.Width, CropArea.Height);
+                    using (Graphics g = Graphics.FromImage(bitMap))
+                    {
+                        g.DrawImage(orgImg, new Rectangle(0, 0, bitMap.Width, bitMap.Height), CropArea, GraphicsUnit.Pixel);
+                    }
+                    var cropFileName = "crop_" + newFileName;
+                    var cropFilePath = Path.Combine(newFilePath, cropFileName);
+                    bitMap.Save(cropFilePath);
+                    //Response.Redirect("~/UploadImages/" + cropFileName, false);
+
+            Tesseract tesseract = new Tesseract("wwwroot/TrainedData",
+                        lang, OcrEngineMode.TesseractLstmCombined);
+
+            tesseract.SetImage(new Image<Bgr, byte>(cropFilePath));
+
+            tesseract.Recognize();
+
+            string text = tesseract.GetUTF8Text();
+            ViewBag.Text = text;
+
+            tesseract.Dispose();
+
+            return text;
         }
 
         private string ProcessImage(string croppedImage)
