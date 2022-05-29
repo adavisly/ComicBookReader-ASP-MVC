@@ -30,10 +30,29 @@
                   }
 
                   #preview-pane .preview-container {  
-                      width: 250px;  
-                      height: 170px;  
+                      width: 300px;  
+                      height: 250px;  
                       overflow: hidden;  
                     }  
+
+                #imgCropped {
+                      padding: 6px;  
+                      border: 1px rgba(0,0,0,.4) solid;  
+                      background-color: white;  
+  
+                      -webkit-border-radius: 6px;  
+                      -moz-border-radius: 6px;  
+                      border-radius: 6px;  
+  
+                      -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);  
+                      -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);  
+                      box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); 
+
+                      width: 250px; 
+                      position: fixed; 
+                      right: 20px; 
+                      top: 100px;
+                }
         </style>
     </head>
     <body>
@@ -51,33 +70,35 @@
             <div id="cropDisplay">
                 <img src="@Model.PageImage" id="imgRec" style="margin: 20px;"/>
             </div>
+            @*
             <div id="preview-pane">  
                 <div class="preview-container">  
                   <img src="@Model.PageImage" class="jcrop-preview" alt="Preview" />  
                 </div>  
             </div>  
+            *@
         </div>
 
           <form action="/Home/CropImage" method="post">
-            <label>X1 <input type="number" size="4" id="x1" name="x1" /></label>  
-            <label>Y1 <input type="number" size="4" id="y1" name="y1" /></label>  
-            <label>X2 <input type="number" size="4" id="x2" name="x2" /></label>  
-            <label>Y2 <input type="number" size="4" id="y2" name="y2" /></label>  
-            <label>W <input type="number" size="4" id="w" name="w" /></label>  
-            <label>H <input type="number" size="4" id="h" name="h" /></label>  
-            <input type="number" size="4" name="imgW" id="imgW" />
-            <input type="number" size="4" name="imgH" id="imgH" />
-            <input type="number" size="4" name="cpId" id="cpId" value="@Model.ComicPageId" />
+            <label>X1 <input type="number" size="4" id="x1" name="x1" style="width: 60px;"/></label>  
+            <label>Y1 <input type="number" size="4" id="y1" name="y1" style="width: 60px;"/></label>  
+            <label>X2 <input type="number" size="4" id="x2" name="x2" style="width: 60px;"/></label>  
+            <label>Y2 <input type="number" size="4" id="y2" name="y2" style="width: 60px;"/></label>  
+            <label>W <input type="number" size="4" id="w" name="w" style="width: 60px;"/></label>  
+            <label>H <input type="number" size="4" id="h" name="h" style="width: 60px;"/></label>  
+            <input type="number" size="4" name="imgW" id="imgW" style="display: none;"/>
+            <input type="number" size="4" name="imgH" id="imgH"  style="display: none;"/>
+            <input type="number" size="4" name="cpId" id="cpId" value="@Model.ComicPageId"  style="display: none;"/>
             <input type="submit" value="Распознать"/>
            </form>
         
 
-        <img id="imgCropped" src="#" style="display:none;" />
+        <img id="imgCropped" alt="Изображение для распознавания" src="@ViewBag.Preview" />
          
-        <div id="recTextBlock" style="position: fixed; top: 500px; right: 40px;">
+        <div id="recTextBlock" style="position: fixed; top: 400px; right: 40px;">
             <p>Распознанный текст:</p>
             
-            <textarea id="recText" type="text" style="width: 190px; height: 200px;">@ViewBag.Text</textarea>
+            <textarea id="recText" type="text" style="width: 220px; height: 300px;">@ViewBag.Text</textarea>
         </div>
         
     </body>

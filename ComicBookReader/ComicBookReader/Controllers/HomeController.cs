@@ -63,7 +63,8 @@ namespace ComicBookReader.Controllers
             ComicPage cp = db.ComicPages.Find(id);
             string lang = "eng";
             string filePath = "wwwroot" + cp.PageImage;
-
+            ViewBag.Preview = "#";
+            /*
             Tesseract tesseract = new Tesseract("wwwroot/TrainedData",
                         lang, OcrEngineMode.TesseractLstmCombined);
 
@@ -74,7 +75,7 @@ namespace ComicBookReader.Controllers
             ViewBag.Text = tesseract.GetUTF8Text();
 
             tesseract.Dispose();
-
+            */
             return View(cp);
         }
 
@@ -106,7 +107,9 @@ namespace ComicBookReader.Controllers
                     var cropFileName = "crop_" + newFileName;
                     var cropFilePath = Path.Combine(newFilePath, cropFileName);
                     bitMap.Save(cropFilePath);
-                    //Response.Redirect("~/UploadImages/" + cropFileName, false);
+            //Response.Redirect("~/UploadImages/" + cropFileName, false);
+
+            ViewBag.Preview = "/img/crop/" + cropFileName;
 
             Tesseract tesseract = new Tesseract("wwwroot/TrainedData",
                         lang, OcrEngineMode.TesseractLstmCombined);
