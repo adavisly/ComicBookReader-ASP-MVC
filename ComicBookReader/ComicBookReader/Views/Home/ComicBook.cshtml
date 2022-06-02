@@ -1,24 +1,39 @@
 ﻿@model ComicBookReader.Models.ComicBook
 @{
+    double av = 0;
+    int sum = 0;
+    int c = 0;
+
+    //int selectedOption = ViewBag.SelectedOption;
 }
 
 <body>
+    @foreach (var cbu in ViewBag.CB_Users)
+    {
+        sum += cbu.ComicBookMark;
+        c++;
+    }
+    @{av = Math.Round((double) sum / c, 2);}
     <section class="content comicbook-page">
         <div class="cb-info-user">
             <div class="cb-info cbuser-info">
                 <img class="star-icon rev-star" src="/img/star_icon.png" />
-                <h5 class="rev-star">4.7 / 5</h5>
-                <p class="rev-count">27</p>
+                <h5 class="rev-star">@av / 5</h5>
+                <p class="rev-count">@c</p>
             </div>
             <div><a class="review-btn">Добавить в любимые</a></div>
             <div><a class="review-btn col change-info-btn btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Оставить отзыв</a></div>
             <div class = "cb-status">
-                <select>
-                    <option>Добавить в список</option>
-                    <option>Хочу прочитать</option>
-                    <option>Читаю</option>
-                    <option>Прочитано</option>
-                </select>
+                <form method="post">
+                    <select name="listStatus">
+                        <option value="">Добавить в список</option>
+                        <option value="1">Хочу прочитать</option>
+                        <option value="2">Читаю</option>
+                        <option value="3">Прочитано</option>
+                    </select>
+                    <br />
+                    <input type="submit" class="sign-in" value="Подтвердить" style="margin-top: 10px;" />
+                </form>
             </div>
         </div>
         <div class="cb-info">
@@ -54,18 +69,26 @@
         <div class="modal-body">
             <div class="info-change">
                 <div>
+                    <form action="/Home/SendReview" method="post">
+                        
+                    
                         <div class="img-username">
                                 <p>Ваша оценка:</p>
+                                @*
                                 <a href="#"><img class="star-icon rev-star currev" src="/img/star_icon.png" /></a>
                                 <a href="#"><img class="star-icon rev-star currev" src="/img/star_icon.png" /></a>
                                 <a href="#"><img class="star-icon rev-star currev" src="/img/star_icon.png" /></a>
                                 <a href="#"><img class="star-icon rev-star currev" src="/img/star_icon.png" /></a>
                                 <a href="#"><img class="star-icon rev-star currev" src="/img/star_icon.png" /></a>
+                                *@
+                                <input class="mark" type="number" name="mark"/>
+                                <input class="cbId" type="number" name="cbId" style="display: none;" value="@Model.ComicBookId"/>
                         </div>
-                        <textarea class="review-input"></textarea>
+                        <textarea class="review-input" name="reviewValue"></textarea>
                             <div class="form-group">
                                 <input class="sign-in" type="submit" value="Отправить" />
                             </div>
+                            </form>
                         </div>
                 </div>
             </div>
@@ -88,17 +111,21 @@
                 
             </div>
             <div class="reviews">
-                <div class="review">
-                    <div class="review-mark">
-                        <img class="star-icon rev-star" src="/img/star_icon.png" />
-                        <p class="rev-star">5 / 5</p>
+                @foreach (var cbu in ViewBag.CB_Users)
+                {
+                    <div class="review">
+                        <div class="review-mark">
+                            <img class="star-icon rev-star" src="/img/star_icon.png" />
+                            <p class="rev-star">@cbu.ComicBookMark / 5</p>
+                        </div>
+                        <div class="img-username">
+                            <img class="user-logo-review" src="/img/user_logo.png" />
+                            <p>Username</p>
+                        </div>
+                        <p class="review-value">@cbu.ComicBookReview</p>
                     </div>
-                    <div class="img-username">
-                        <img class="user-logo-review" src="/img/user_logo.png" />
-                        <p>Username</p>
-                    </div>
-                    <p class="review-value">Отзыв</p>
-                </div>
+                }
+            
             </div>
     </section>
 

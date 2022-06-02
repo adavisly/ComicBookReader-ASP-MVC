@@ -5,8 +5,94 @@
 @{
 }
 <head>
+    @*<link href="~/css/user_profile.css" rel="stylesheet" />*@
     <style>
-        .status-nav {
+        .logout-btn {
+    float: right;
+    border: 0px;
+    border-radius: 20px;
+    background-color: #e8e2a2;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 20px;
+}
+
+.logout-btn:hover {
+    background-color: rgb(218, 210, 140);
+    color: black;
+}
+
+.user-info {
+    display: flex;
+    margin-left: 20px;
+}
+
+.user-logo {
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.place {
+  margin-right: 50px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.change-info-btn {
+    color: black;
+    margin-left: 10px;
+    text-decoration: none;
+    border: 0px;
+    border-radius: 20px;
+    background-color: #d4d4d4;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.change-info-btn:hover {
+    color: black;
+    background-color: #ababab;
+}
+
+.user-name {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.info-change {
+  display: flex;
+}
+
+.status-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.review-mark {
+    float: right;
+    display: flex;
+}
+
+.reviews {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.user-logo-review {
+    height: 50px;
+    width: 50px;
+}
+
+.status-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,8 +114,7 @@
 }
 
     .review-nav:hover, .reading-nav:hover, .read-nav:hover, .wish-nav:hover, .favourite-nav:hover {
-        
-        color: #aaa;
+        color: #777;
     }
 
 .review-mark {
@@ -230,6 +315,10 @@
             thisBlockh.style.display = "none";
             thisBlock_navh.style.backgroundColor = "#fff";
 
+        }
+
+
+        
             /*
             thisBlock_navh.addEventListener("mouseover", function() {
                this.style.backgroundColor = "#e8e2a2";
@@ -239,8 +328,6 @@
                this.style.backgroundColor = "#fff";
             })
             */
-        }
-
 
     </script>
     

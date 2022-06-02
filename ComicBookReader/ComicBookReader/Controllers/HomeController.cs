@@ -37,6 +37,9 @@ namespace ComicBookReader.Controllers
 
         public IActionResult ComicBook(int id)
         {
+            List<ComicBook_User> cb_users = db.ComicBook_Users.Where(cbu => cbu.ComicBookId == id).ToList();
+            ViewBag.CB_Users = cb_users;
+
             ComicBook comicBook = db.ComicBooks.Find(id);
             comicBook.Chapters = db.Chapters.Where(ch => ch.ComicBookId == id).ToList();
             comicBook.Authors = db.Authors.Include(a => a.ComicBooks).ToList();
@@ -58,10 +61,72 @@ namespace ComicBookReader.Controllers
             return View(chapter);
         }
 
+        [Authorize]
+        [HttpPost]
+        public IActionResult SendReview(int mark, int cbId, string reviewValue)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+                int userId = user.UserId;
+                ComicBook_User cb_user = db.ComicBook_Users.Find(cbId, userId);
+                if (cb_user == null)
+                {
+                    db.ComicBook_Users.Add(new ComicBook_User
+                    {
+                        ComicBookId = cbId,
+                        UserId = userId,
+                        ComicBookMark = mark,
+                        ComicBookReview = reviewValue
+                    });
+                    db.SaveChanges();
+                }
+                else
+                {
+                    cb_user.ComicBookReview = reviewValue;
+                    cb_user.ComicBookMark = mark;
+                    db.ComicBook_Users.Update(cb_user);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("ComicBook", new {id = cbId});
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddStatus(int mark, int cbId, string reviewValue)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+                int userId = user.UserId;
+                ComicBook_User cb_user = db.ComicBook_Users.Find(cbId, userId);
+                if (cb_user == null)
+                {
+                    db.ComicBook_Users.Add(new ComicBook_User
+                    {
+                        ComicBookId = cbId,
+                        UserId = userId,
+                        ComicBookMark = mark,
+                        ComicBookReview = reviewValue
+                    });
+                    db.SaveChanges();
+                }
+                else
+                {
+                    cb_user.ComicBookReview = reviewValue;
+                    cb_user.ComicBookMark = mark;
+                    db.ComicBook_Users.Update(cb_user);
+                    db.SaveChanges();
+                }
+            }
+            return View();
+        }
+
         public IActionResult RecognizeText(int id)
         {
             ComicPage cp = db.ComicPages.Find(id);
-            string lang = "eng";
+            //string lang = "eng";
             string filePath = "wwwroot" + cp.PageImage;
             ViewBag.Preview = "#";
             /*
