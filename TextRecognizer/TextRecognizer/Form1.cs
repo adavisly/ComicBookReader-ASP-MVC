@@ -59,8 +59,6 @@ namespace TextRecognizer
                     Tesseract tesseract = new Tesseract(@"F:\GitHub\ComicBookReader-ASP-MVC\TrainedData", 
                         lang, OcrEngineMode.TesseractLstmCombined);
 
-                    tesseract.SetVariable("tessedit_pageseg_mode", 5.ToString());
-
                     tesseract.SetImage(new Image<Bgr, byte>(filePath));
 
                     tesseract.Recognize();
@@ -88,11 +86,7 @@ namespace TextRecognizer
             }
             else if (toolStripComboBox1.SelectedIndex == 2)
             {
-                lang = "jpn+jpn_vert5";
-            }
-            else if (toolStripComboBox1.SelectedIndex == 3)
-            {
-                lang = "jpn_vert5";
+                lang = "jpn";
             }
         }
     }
