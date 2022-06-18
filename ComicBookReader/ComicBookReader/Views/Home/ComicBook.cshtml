@@ -13,7 +13,7 @@
         sum += cbu.ComicBookMark;
         c++;
     }
-    @{av = Math.Round((double) sum / c, 2);}
+    @{if (c != 0) av = Math.Round((double) sum / c, 2);}
     <section class="content comicbook-page">
         <div class="cb-info-user">
             <div class="cb-info cbuser-info">
@@ -49,10 +49,10 @@
                     }
                 </p>
                 <p class="cb-info-item">Жанры: 
-                    @foreach (var genre in @Model.Genres)
-                    {
-                        <a>@genre.GenreName</a>
-                    }
+                      <a>@Model.Genres[10].GenreName</a>
+                      <a>@Model.Genres[9].GenreName</a>
+                      <a>@Model.Genres[8].GenreName</a>
+                      <a>@Model.Genres[5].GenreName</a>
                 </p>
                 <p class="cb-info-item">Описание: @Model.ComicBookDescription</p>
             </div>

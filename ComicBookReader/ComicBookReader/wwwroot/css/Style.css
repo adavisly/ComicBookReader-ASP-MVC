@@ -317,7 +317,7 @@ footer {
 .comicbook-previews {
     display: flex;
     text-align: center;
-    justify-content: space-between;
+    justify-content: left;
     margin-top: 30px;
     margin-left: 40px;
     margin-right: 40px;
@@ -326,6 +326,7 @@ footer {
 
 .comicbook-preview {
     width: 200px;
+    margin-right: 50px;
 }
 
     .comicbook-preview:hover {

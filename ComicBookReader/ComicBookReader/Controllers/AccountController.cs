@@ -23,6 +23,14 @@ namespace ComicBookReader.Controllers
         public async Task<IActionResult> UserProfile()
         {
             User user = await db.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+            List<ComicBook_User> cb_users_list = new List<ComicBook_User>();
+            var count_cb = await db.ComicBook_Users.CountAsync();
+            for (int i = 0; i < count_cb; i++)
+            {
+                var cb_user = await db.ComicBook_Users.FindAsync(i, user.UserId);
+                cb_users_list.Add(cb_user);
+            }
+            ViewBag.Cb_Users_tu = cb_users_list;
 
             return View(user);
         }

@@ -148,45 +148,62 @@ namespace ComicBookReader.Controllers
         [HttpPost]
         public IActionResult CropImage(int x1, int y1, int x2, int y2, int w, int h, int imgW, int imgH, int cpId)
         {
-            string lang = "eng";
+            string lang = "none";
 
             ComicPage cp = db.ComicPages.Find(cpId);
 
-            string newFileName = Guid.NewGuid() + ".jpg";
-            string newFilePath = "wwwroot/img/crop/";
+            Chapter ch = db.Chapters.Find(cp.ChapterId);
 
-            string filePath = Path.Combine(newFilePath, newFileName);
+            ComicBook cb = db.ComicBooks.Find(ch.ComicBookId);
 
-            System.IO.File.Copy("wwwroot" + cp.PageImage, filePath);
+            if (cb.ComicBookLanguage == "English")
+                lang = "eng";
+            else if (cb.ComicBookLanguage == "Russian")
+                lang = "rus";
+            else if (cb.ComicBookLanguage == "Japanese")
+                lang = "jpn";
+            else lang = "none";
+
+            if (lang != "none")
+            {
+                string newFileName = Guid.NewGuid() + ".jpg";
+                string newFilePath = "wwwroot/img/crop/";
+
+                string filePath = Path.Combine(newFilePath, newFileName);
+
+                System.IO.File.Copy("wwwroot" + cp.PageImage, filePath);
                 Image orgImg = Image.FromFile(filePath);
                 Rectangle CropArea = new Rectangle(
                     Convert.ToInt32(x1),
                     Convert.ToInt32(y1),
                     Convert.ToInt32(w),
                     Convert.ToInt32(h));
-                    Bitmap bitMap = new Bitmap(CropArea.Width, CropArea.Height);
-                    using (Graphics g = Graphics.FromImage(bitMap))
-                    {
-                        g.DrawImage(orgImg, new Rectangle(0, 0, bitMap.Width, bitMap.Height), CropArea, GraphicsUnit.Pixel);
-                    }
-                    var cropFileName = "crop_" + newFileName;
-                    var cropFilePath = Path.Combine(newFilePath, cropFileName);
-                    bitMap.Save(cropFilePath);
-            //Response.Redirect("~/UploadImages/" + cropFileName, false);
+                Bitmap bitMap = new Bitmap(CropArea.Width, CropArea.Height);
+                using (Graphics g = Graphics.FromImage(bitMap))
+                {
+                    g.DrawImage(orgImg, new Rectangle(0, 0, bitMap.Width, bitMap.Height), CropArea, GraphicsUnit.Pixel);
+                }
+                var cropFileName = "crop_" + newFileName;
+                var cropFilePath = Path.Combine(newFilePath, cropFileName);
+                bitMap.Save(cropFilePath);
+                //Response.Redirect("~/UploadImages/" + cropFileName, false);
 
-            ViewBag.Preview = "/img/crop/" + cropFileName;
+                ViewBag.Preview = "/img/crop/" + cropFileName;
 
-            Tesseract tesseract = new Tesseract("wwwroot/TrainedData",
-                        lang, OcrEngineMode.TesseractLstmCombined);
+                Tesseract tesseract = new Tesseract("wwwroot/TrainedData",
+                            lang, OcrEngineMode.TesseractLstmCombined);
 
-            tesseract.SetImage(new Image<Bgr, byte>(cropFilePath));
+                tesseract.SetImage(new Image<Bgr, byte>(cropFilePath));
 
-            tesseract.Recognize();
+                tesseract.Recognize();
 
-            string text = tesseract.GetUTF8Text();
-            ViewBag.Text = text;
+                string text = tesseract.GetUTF8Text();
+                ViewBag.Text = text;
 
-            tesseract.Dispose();
+                tesseract.Dispose();
+            }
+
+            
 
             return View("RecognizeText", cp);
         }

@@ -23,7 +23,33 @@ namespace ComicBookReader.Data
                     ComicBookYear = 2014
                 };
 
+                ComicBook ComicBookMajorGrom = new ComicBook
+                {
+                    ComicBookTitle = "Майор Гром",
+                    ComicBookLanguage = "Russian",
+                    ComicBookCover = "/img/ComicBooks/Major_Grom/mg_cover.jpeg",
+                    ComicBookDescription = "Основное действие комикса происходит в альтернативном Санкт-Петербурге. " +
+                    "Главный герой серии — майор полиции по имени Игорь Гром, известный своим непримиримым отношением " +
+                    "к преступности, честностью, неподкупностью, а также детективными способностями и навыками рукопашного боя.",
+                    ComicBookYear = 2012
+                };
+
+                ComicBook ComicBookAttackOnTitan = new ComicBook
+                {
+                    ComicBookTitle = "Атака титанов",
+                    ComicBookLanguage = "Japanese",
+                    ComicBookCover = "/img/ComicBooks/Attack_On_Titan/snk_cover.png",
+                    ComicBookDescription = "Давным-давно человечество было всего лишь «их» кормом, до тех пор, пока оно не " +
+                    "построило гигантскую стену вокруг своей страны. С тех пор прошло сто лет мира и большинство людей жили " +
+                    "счастливой, беззаботной жизнью. Но за долгие годы спокойствия пришлось заплатить огромную цену, " +
+                    "и в 845 году они снова познали чувство ужаса и беспомощности – стена, которая была их единственным " +
+                    "спасением, пала. «Они» прорвались. Половина человечества съедена, треть территории навсегда потеряна...",
+                    ComicBookYear = 2009
+                };
+
                 context.ComicBooks.Add(ComicBookAvatarTheSearch);
+                context.ComicBooks.Add(ComicBookMajorGrom);
+                context.ComicBooks.Add(ComicBookAttackOnTitan);
 
                 Author AuthorAvatarTheSearch1 = new Author
                 {
@@ -38,8 +64,23 @@ namespace ComicBookReader.Data
                     AuthorBirthday = "",
                     AuthorImage = ""
                 };
+                /*
+                Author AuthorMajorGrom1 = new Author
+                {
+                    AuthorName = "Артём Габрелянов",
+                    AuthorBirthday = "9.02.1987",
+                    AuthorImage = ""
+                };
 
+                Author AuthorAoT = new Author
+                {
+                    AuthorName = "Хадзиме Исаяма",
+                    AuthorBirthday = "9.02.1987",
+                    AuthorImage = ""
+                };
+                */
                 context.Authors.AddRange(AuthorAvatarTheSearch1, AuthorAvatarTheSearch2);
+                //context.Authors.Add(AuthorMajorGrom1);
 
                 Genre Drama = new Genre
                 {
@@ -111,10 +152,16 @@ namespace ComicBookReader.Data
                 ComicBookAvatarTheSearch.Authors.Add(AuthorAvatarTheSearch1);
                 ComicBookAvatarTheSearch.Authors.Add(AuthorAvatarTheSearch2);
 
+                //ComicBookMajorGrom.Authors.Add(AuthorMajorGrom1);
+
                 ComicBookAvatarTheSearch.Genres.Add(Drama);
                 ComicBookAvatarTheSearch.Genres.Add(Fantasy);
                 ComicBookAvatarTheSearch.Genres.Add(Adventure);
                 ComicBookAvatarTheSearch.Genres.Add(Action);
+
+                ComicBookMajorGrom.Genres.Add(Drama);
+                ComicBookMajorGrom.Genres.Add(Adventure);
+                ComicBookMajorGrom.Genres.Add(Action);
 
                 Chapter ChapterAvatarTheSearch1 = new Chapter
                 {
@@ -134,7 +181,29 @@ namespace ComicBookReader.Data
                     ChapterName = "Аватар: Легенда об Аанге - Поиск. Часть 3"
                 };
 
+                Chapter ChapterMajorGrom1 = new Chapter
+                {
+                    ComicBook = ComicBookMajorGrom,
+                    ChapterName = "Глава 1"
+                };
+
+                Chapter ChapterMajorGrom2 = new Chapter
+                {
+                    ComicBook = ComicBookMajorGrom,
+                    ChapterName = "Глава 2"
+                };
+
+                Chapter ChapterAoT1 = new Chapter
+                {
+                    ComicBook = ComicBookAttackOnTitan,
+                    ChapterName = "Глава 1"
+                };
+
                 context.Chapters.AddRange(ChapterAvatarTheSearch1, ChapterAvatarTheSearch2, ChapterAvatarTheSearch3);
+
+                context.Chapters.AddRange(ChapterMajorGrom1, ChapterMajorGrom2);
+
+                context.Chapters.Add(ChapterAoT1);
 
                 //int countPagesThePromise1 = new DirectoryInfo("wwwroot/img/ComicBooks/Avatar_The_Promise/Part1").GetFiles().Length;
                 for (int i = 0; i < 82; i++)
@@ -171,6 +240,40 @@ namespace ComicBookReader.Data
                         PageNumber = i + 1
                     });
                 }
+
+                for (int i = 0; i < 33; i++)
+                {
+                    context.ComicPages.Add(
+                    new ComicPage
+                    {
+                        Chapter = ChapterMajorGrom1,
+                        PageImage = $"/img/ComicBooks/Major_Grom/ch1/{i + 1}.jpg",
+                        PageNumber = i + 1
+                    });
+                }
+
+                for (int i = 0; i < 23; i++)
+                {
+                    context.ComicPages.Add(
+                    new ComicPage
+                    {
+                        Chapter = ChapterMajorGrom2,
+                        PageImage = $"/img/ComicBooks/Major_Grom/ch2/{i + 1}.jpg",
+                        PageNumber = i + 1
+                    });
+                }
+
+                for (int i = 0; i < 15; i++)
+                {
+                    context.ComicPages.Add(
+                    new ComicPage
+                    {
+                        Chapter = ChapterAoT1,
+                        PageImage = $"/img/ComicBooks/Attack_On_Titan/ch1/aot ({i + 1}).jpg",
+                        PageNumber = i + 1
+                    });
+                }
+
                 context.SaveChanges();
             }
             
