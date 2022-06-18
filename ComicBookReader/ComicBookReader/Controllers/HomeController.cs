@@ -94,28 +94,27 @@ namespace ComicBookReader.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddStatus(int mark, int cbId, string reviewValue)
+        public IActionResult AddStatus(string status, int cbId)
         {
             if (User.Identity.IsAuthenticated)
             {
                 User user = db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
                 int userId = user.UserId;
                 ComicBook_User cb_user = db.ComicBook_Users.Find(cbId, userId);
+
                 if (cb_user == null)
                 {
                     db.ComicBook_Users.Add(new ComicBook_User
                     {
                         ComicBookId = cbId,
                         UserId = userId,
-                        ComicBookMark = mark,
-                        ComicBookReview = reviewValue
+                        ReadingStatus = status
                     });
                     db.SaveChanges();
                 }
                 else
                 {
-                    cb_user.ComicBookReview = reviewValue;
-                    cb_user.ComicBookMark = mark;
+                    cb_user.ReadingStatus = status;
                     db.ComicBook_Users.Update(cb_user);
                     db.SaveChanges();
                 }
